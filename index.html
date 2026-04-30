@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMSC Performance — Design System v2.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Antonio:wght@400;500;700&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#a60a08;--deep-red:#820b0b;
+  --black:#000;--surface:#1a1a1a;
+  --off-white:#f5f5f8;--grey:#d3d3d3;
+  --muted:#555;--divider:#222;
+}
+.ds{background:#000;min-height:100vh;color:var(--off-white);font-family:'Barlow',sans-serif}
+.ds-header{background:var(--surface);border-bottom:2px solid var(--red);padding:20px 24px;display:flex;align-items:center;gap:16px}
+.ds-wordmark{font-family:'Oswald',sans-serif;font-weight:700;font-size:20px;letter-spacing:.06em;color:var(--off-white)}
+.ds-wordmark span{color:var(--red)}
+.ds-sub{font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
+.ds-nav{display:flex;gap:1px;padding:0 24px;background:var(--divider);border-bottom:1px solid var(--divider);flex-wrap:wrap}
+.ds-tab{font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:12px 16px;cursor:pointer;border:none;background:transparent;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s}
+.ds-tab.on{color:var(--off-white);border-bottom-color:var(--red)}
+.ds-tab:hover:not(.on){color:var(--grey)}
+.ds-body{padding:32px 24px}
+.ds-section{display:none}.ds-section.on{display:block}
+.label{font-family:'Oswald',sans-serif;font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.group{margin-bottom:40px}
+.rule{border:none;border-top:0.5px solid var(--divider);margin:32px 0}
+
+/* Colour swatches */
+.swatch-row{display:flex;gap:4px;height:64px;border-radius:2px;overflow:hidden;margin-bottom:6px}
+.sw{flex:1;display:flex;align-items:flex-end;padding:6px 8px}
+.sw-label{font-family:'Barlow',sans-serif;font-size:10px;font-weight:500}
+.hex{font-family:'Barlow',sans-serif;font-size:9px;opacity:.7}
+
+/* Token table */
+.token-table{width:100%;border-collapse:collapse}
+.token-table tr{border-bottom:0.5px solid var(--divider)}
+.token-table tr:last-child{border-bottom:none}
+.token-table td{padding:10px 12px;font-size:13px;vertical-align:middle}
+.mono{font-family:monospace;font-size:11px;color:var(--red)}
+
+/* Typography */
+.type-row{padding:16px 0;border-bottom:0.5px solid var(--divider)}
+.type-row:last-child{border-bottom:none}
+.type-meta{font-family:monospace;font-size:10px;color:var(--muted);margin-top:5px}
+
+/* Spacing */
+.sp-row{display:flex;align-items:center;gap:16px;padding:8px 0;border-bottom:0.5px solid var(--divider)}
+.sp-row:last-child{border-bottom:none}
+.sp-name{font-family:monospace;font-size:11px;color:var(--muted);min-width:32px}
+.sp-bar{background:var(--red);height:14px;border-radius:1px;opacity:.85}
+.sp-val{font-family:'Antonio',sans-serif;font-size:13px;color:var(--grey);min-width:40px}
+
+/* Component grid */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--divider);margin-bottom:1px}
+.comp-card{background:var(--surface);padding:20px}
+.comp-title{font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+
+/* Components */
+.eyebrow{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;background:var(--red);font-family:'Oswald',sans-serif;font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#fff;border-radius:2px}
+.eyebrow-ghost{border:0.5px solid var(--red);background:transparent;color:var(--red)}
+.metric-large{font-family:'Antonio',sans-serif;font-weight:700;font-size:48px;color:var(--off-white);line-height:1}
+.metric-label{font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.metric-sm{font-family:'Antonio',sans-serif;font-weight:700;font-size:24px;color:var(--off-white);line-height:1}
+.delta{font-family:'Antonio',sans-serif;font-weight:500;font-size:16px;color:var(--red)}
+.stat-bar{display:flex;gap:1px;background:var(--divider)}
+.stat-cell{flex:1;background:var(--surface);padding:12px 10px}
+.stat-num{font-family:'Antonio',sans-serif;font-weight:700;font-size:22px;color:var(--off-white);line-height:1}
+.stat-num.accent{color:var(--red)}
+.stat-lbl{font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--red);color:#fff;font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px;transition:background .15s}
+.btn-primary:hover{background:var(--deep-red)}
+.btn-ghost{background:transparent;border:0.5px solid var(--off-white);color:var(--off-white)}
+.btn-ghost:hover{background:rgba(245,245,248,.06)}
+.divider-red{height:2px;background:var(--red);margin:16px 0}
+.divider-thin{height:0.5px;background:var(--divider);margin:12px 0}
+.quote-block{border-left:3px solid var(--red);padding-left:14px;margin:8px 0}
+.quote-block p{font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey);line-height:1.7;font-style:italic}
+.quote-block .attr{font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+/* Template / layout helpers */
+.tpl-frame{background:var(--surface);border:0.5px solid var(--divider);position:relative;overflow:hidden}
+.photo-placeholder{background:linear-gradient(160deg,#0d0d0d 0%,#1a1a1a 100%);display:flex;align-items:center;justify-content:center}
+.photo-label{font-family:'Barlow',sans-serif;font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;text-align:center;line-height:1.6}
+.tpl-overlay{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(to top,rgba(0,0,0,.95) 0%,transparent 100%)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--divider)}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--divider)}
+.grid-cell{background:var(--surface);padding:14px}
+
+/* Brand rules */
+.brand-rule-row{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:0.5px solid var(--divider)}
+.brand-rule-row:last-child{border-bottom:none}
+.brand-dot{width:6px;height:6px;border-radius:50%;background:var(--red);margin-top:5px;flex-shrink:0}
+.brand-dot.grey{background:var(--muted)}
+.brand-rule-text{font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey);line-height:1.6}
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--divider)}
+.do-box{background:var(--surface);padding:16px}
+.do-head{font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px}
+.do-head.do{color:#3a8c5c}.do-head.dont{color:var(--red)}
+
+/* Caption block */
+.caption-block{background:#0a0a0a;border:0.5px solid var(--divider);padding:16px 18px;border-radius:2px;margin-bottom:8px}
+.caption-line{font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey);line-height:1.8}
+.caption-line strong{color:var(--off-white);font-weight:600}
+
+/* Photo mode cards */
+.photo-mode{background:var(--surface);border:0.5px solid var(--divider);padding:18px;margin-bottom:8px}
+.photo-mode-name{font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.photo-mode-desc{font-family:'Barlow',sans-serif;font-size:12px;color:var(--grey);line-height:1.6}
+
+/* Authority sequence */
+.auth-row{display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface);margin-bottom:1px}
+.auth-num{font-family:'Antonio',sans-serif;font-size:16px;color:var(--red);min-width:28px}
+.auth-text{font-family:'Barlow',sans-serif;font-size:13px;color:var(--off-white)}
+
+/* Social template mock */
+.social-mock{background:var(--black);border:0.5px solid var(--divider);position:relative;overflow:hidden}
+.social-label{font-family:'Oswald',sans-serif;font-weight:600;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+</style>
+</head>
+<body>
+<div class="ds">
+
+<!-- HEADER -->
+<div class="ds-header">
+  <div>
+    <div class="ds-wordmark">AMSC <span>PERFORMANCE</span></div>
+    <div class="ds-sub">Design System · v2.0 · April 2026</div>
+  </div>
+  <div style="margin-left:auto;font-family:'Antonio',sans-serif;font-size:11px;color:var(--muted);letter-spacing:.1em">HOME TO ELITE SPORTS PERFORMANCE</div>
+</div>
+
+<!-- NAV -->
+<div class="ds-nav">
+  <button class="ds-tab on"    onclick="show('colours',this)">Colours</button>
+  <button class="ds-tab"       onclick="show('type',this)">Typography</button>
+  <button class="ds-tab"       onclick="show('spacing',this)">Spacing</button>
+  <button class="ds-tab"       onclick="show('components',this)">Components</button>
+  <button class="ds-tab"       onclick="show('templates',this)">Social Templates</button>
+  <button class="ds-tab"       onclick="show('captions',this)">Captions</button>
+  <button class="ds-tab"       onclick="show('photography',this)">Photography</button>
+  <button class="ds-tab"       onclick="show('rules',this)">Brand Rules</button>
+</div>
+
+<div class="ds-body">
+
+<!-- ══════════════════════════════════════════════════════════
+     COLOURS
+════════════════════════════════════════════════════════════ -->
+<div id="colours" class="ds-section on">
+  <div class="group">
+    <div class="label">Primary Accent</div>
+    <div class="swatch-row">
+      <div class="sw" style="background:#c4180f;flex:none;width:48px"><span class="sw-label" style="color:rgba(255,255,255,.5);font-size:9px">Light</span></div>
+      <div class="sw" style="background:var(--red);flex:2"><span><div class="sw-label" style="color:#fff">#a60a08 · AMSC Red</div><div class="hex" style="color:rgba(255,255,255,.6)">Primary accent — surgical, not decorative</div></span></div>
+      <div class="sw" style="background:var(--deep-red);flex:none;width:80px"><span><div class="sw-label" style="color:rgba(255,255,255,.7);font-size:10px">#820b0b</div><div class="hex" style="color:rgba(255,255,255,.4)">Deep Red · Hover</div></span></div>
+    </div>
+    <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted)">Red is an accent. It appears once per layout — on the single most important element.</div>
+  </div>
+
+  <div class="group">
+    <div class="label">Neutral System</div>
+    <div class="swatch-row">
+      <div class="sw" style="background:var(--black);flex:1;border:0.5px solid var(--divider)"><span><div class="sw-label" style="color:var(--muted)">#000000</div><div class="hex" style="color:var(--divider)">Black</div></span></div>
+      <div class="sw" style="background:var(--surface);flex:1"><span><div class="sw-label" style="color:var(--muted)">#1a1a1a</div><div class="hex" style="color:var(--divider)">Surface</div></span></div>
+      <div class="sw" style="background:var(--divider);flex:none;width:56px"><span><div class="sw-label" style="color:var(--muted);font-size:9px">#222</div></span></div>
+      <div class="sw" style="background:var(--muted);flex:none;width:56px"><span><div class="sw-label" style="color:var(--surface);font-size:9px">#555</div></span></div>
+      <div class="sw" style="background:var(--grey);flex:1"><span><div class="sw-label" style="color:var(--surface)">#d3d3d3</div><div class="hex" style="color:var(--muted)">Light Grey</div></span></div>
+      <div class="sw" style="background:var(--off-white);flex:1"><span><div class="sw-label" style="color:var(--surface)">#f5f5f8</div><div class="hex" style="color:var(--muted)">Off-White · Text</div></span></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="label">Colour Token Reference</div>
+    <table class="token-table">
+      <tr><td style="color:var(--muted);font-size:11px">Role</td><td style="color:var(--muted);font-size:11px">CSS Variable</td><td style="color:var(--muted);font-size:11px">Hex</td><td style="color:var(--muted);font-size:11px">Usage</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--red);border-radius:50%"></div><span style="font-size:13px;color:var(--off-white)">AMSC Red</span></div></td><td class="mono">--amsc-red</td><td style="font-size:12px;color:var(--grey)">#a60a08</td><td style="font-size:11px;color:var(--muted)">CTAs, eyebrows, the one accent per layout</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--deep-red);border-radius:50%"></div><span style="font-size:13px;color:var(--off-white)">Deep Red</span></div></td><td class="mono">--amsc-deep-red</td><td style="font-size:12px;color:var(--grey)">#820b0b</td><td style="font-size:11px;color:var(--muted)">Hover states, secondary red</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:#000;border:0.5px solid #333;border-radius:50%"></div><span style="font-size:13px;color:var(--off-white)">Black</span></div></td><td class="mono">--amsc-black</td><td style="font-size:12px;color:var(--grey)">#000000</td><td style="font-size:11px;color:var(--muted)">Full-bleed backgrounds</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--surface);border-radius:50%"></div><span style="font-size:13px;color:var(--off-white)">Surface</span></div></td><td class="mono">--amsc-surface</td><td style="font-size:12px;color:var(--grey)">#1a1a1a</td><td style="font-size:11px;color:var(--muted)">Card surfaces, panels</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--divider);border-radius:50%"></div><span style="font-size:13px;color:var(--off-white)">Divider</span></div></td><td class="mono">--amsc-divider</td><td style="font-size:12px;color:var(--grey)">#222222</td><td style="font-size:11px;color:var(--muted)">Borders, separators, grid lines</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--muted);border-radius:50%"></div><span style="font-size:13px;color:var(--off-white)">Muted</span></div></td><td class="mono">--amsc-muted</td><td style="font-size:12px;color:var(--grey)">#555555</td><td style="font-size:11px;color:var(--muted)">Tertiary labels, disabled</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--grey);border-radius:50%"></div><span style="font-size:13px;color:var(--off-white)">Light Grey</span></div></td><td class="mono">--amsc-grey</td><td style="font-size:12px;color:var(--grey)">#d3d3d3</td><td style="font-size:11px;color:var(--muted)">Subtext, labels, secondary info</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--off-white);border-radius:50%"></div><span style="font-size:13px;color:var(--off-white)">Off-White</span></div></td><td class="mono">--amsc-off-white</td><td style="font-size:12px;color:var(--grey)">#f5f5f8</td><td style="font-size:11px;color:var(--muted)">All primary text on dark</td></tr>
+    </table>
+    <div style="margin-top:14px;padding:12px 14px;background:var(--surface);border-left:3px solid var(--red)">
+      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--grey);line-height:1.6">No other colours are permitted. Do not introduce gold, green, blue, or partner brand colours into AMSC-primary layouts. The palette is complete as listed.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     TYPOGRAPHY
+════════════════════════════════════════════════════════════ -->
+<div id="type" class="ds-section">
+  <div class="group">
+    <div class="label">Font 1 — Oswald · Authority</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6">Commands. Structures. Establishes hierarchy. Use for: all headlines, section headings, eyebrow labels, navigation, slide titles, category tags. Always uppercase.</div>
+    <div class="type-row">
+      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:52px;text-transform:uppercase;color:var(--off-white);line-height:.95">DISPLAY</div>
+      <div class="type-meta">Oswald 700 · 48–96px · Uppercase · line-height .95 · Headlines, cover type</div>
+    </div>
+    <div class="type-row">
+      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:36px;text-transform:uppercase;color:var(--off-white)">ATHLETE SPOTLIGHT</div>
+      <div class="type-meta">Oswald 700 · H1 · 32–48px · Uppercase</div>
+    </div>
+    <div class="type-row">
+      <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:22px;text-transform:uppercase;color:var(--off-white)">SESSION OVERVIEW</div>
+      <div class="type-meta">Oswald 600 · H2 · 20–28px · Uppercase</div>
+    </div>
+    <div class="type-row">
+      <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)">BASKETBALL · NAIROBI CITY THUNDER</div>
+      <div class="type-meta">Oswald 600 · Eyebrow · 10–12px · Tracking .18–.22em · Always in red</div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="group">
+    <div class="label">Font 2 — Antonio · Data & Editorial</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6">Presents. Clarifies. Makes numbers land. Use for: all metric numbers, combine scores, performance data, stat callouts, delta indicators. Numbers lead always.</div>
+    <div class="type-row">
+      <div style="display:flex;align-items:baseline;gap:4px">
+        <span style="font-family:'Antonio',sans-serif;font-weight:700;font-size:52px;color:var(--red);line-height:1">10.3</span>
+        <span style="font-family:'Antonio',sans-serif;font-weight:400;font-size:20px;color:var(--muted)">s</span>
+      </div>
+      <div class="type-meta">Antonio 700 · Metric Large · 36–56px · Numbers lead always</div>
+    </div>
+    <div class="type-row">
+      <div style="display:flex;align-items:baseline;gap:12px">
+        <span style="font-family:'Antonio',sans-serif;font-weight:700;font-size:28px;color:var(--off-white)">91</span>
+        <span style="font-family:'Antonio',sans-serif;font-weight:500;font-size:16px;color:var(--red)">▲ +12%</span>
+      </div>
+      <div class="type-meta">Antonio 500 · Metric Small + Delta · 18–28px</div>
+    </div>
+    <div class="type-row">
+      <div style="font-family:'Antonio',sans-serif;font-weight:400;font-size:14px;color:var(--grey)">100m Personal Best · Kenya #7 · 2026 Season</div>
+      <div class="type-meta">Antonio 400 · Data Label · 12–16px · Mixed case</div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="group">
+    <div class="label">Font 3 — Barlow · Support</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6">Explains. Contextualises. Reads. Use for: all body copy, captions, quotes, athlete descriptions, supporting text, footnotes. Always sentence case.</div>
+    <div class="type-row">
+      <div style="font-family:'Barlow',sans-serif;font-weight:400;font-size:15px;color:var(--grey);line-height:1.7;max-width:520px">The work started months before that time appeared on the board. Every block start, every drill, every session logged — it compounds. That 10.3 is not a moment. It is a body of work.</div>
+      <div class="type-meta">Barlow 400 · Body · 12–16px · Sentence case · line-height 1.7</div>
+    </div>
+    <div class="type-row">
+      <div style="font-family:'Barlow',sans-serif;font-weight:400;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">AMSC PERFORMANCE · @AMSCPERFORMANCE · NAIROBI, KENYA</div>
+      <div class="type-meta">Barlow 400 · Caption · 9–11px · Uppercase · Tracking .12–.16em</div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="group">
+    <div class="label">Type System Rules</div>
+    <div class="do-dont" style="border:0.5px solid var(--divider)">
+      <div class="do-box">
+        <div class="do-head do">Always</div>
+        <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--grey);line-height:1.8">
+          Oswald headlines in uppercase only<br>
+          Barlow body in sentence case only<br>
+          Antonio for every number/metric<br>
+          Line-height .95 on display type<br>
+          Tracking .18em+ on eyebrow labels
+        </div>
+      </div>
+      <div class="do-box" style="border-left:0.5px solid var(--divider)">
+        <div class="do-head dont">Never</div>
+        <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--grey);line-height:1.8">
+          A fourth typeface in any layout<br>
+          Oswald for body copy<br>
+          Antonio for headlines<br>
+          All-caps on Barlow body text<br>
+          Decorative, script, or novelty fonts
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SPACING
+════════════════════════════════════════════════════════════ -->
+<div id="spacing" class="ds-section">
+  <div class="group">
+    <div class="label">8px Base Grid</div>
+    <div class="sp-row"><span class="sp-name">8</span><div class="sp-bar" style="width:8px"></div><span class="sp-val">8px</span><span style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted)">Icon gap, tight spacing</span></div>
+    <div class="sp-row"><span class="sp-name">16</span><div class="sp-bar" style="width:16px"></div><span class="sp-val">16px</span><span style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted)">Component internal padding, gutters</span></div>
+    <div class="sp-row"><span class="sp-name">24</span><div class="sp-bar" style="width:24px"></div><span class="sp-val">24px</span><span style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted)">Card padding, section gap</span></div>
+    <div class="sp-row"><span class="sp-name">32</span><div class="sp-bar" style="width:32px"></div><span class="sp-val">32px</span><span style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted)">Between components</span></div>
+    <div class="sp-row"><span class="sp-name">40</span><div class="sp-bar" style="width:40px"></div><span class="sp-val">40px</span><span style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted)">Slide margins</span></div>
+    <div class="sp-row"><span class="sp-name">48</span><div class="sp-bar" style="width:48px"></div><span class="sp-val">48px</span><span style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted)">Major section breaks</span></div>
+    <div class="sp-row"><span class="sp-name">64</span><div class="sp-bar" style="width:64px"></div><span class="sp-val">64px</span><span style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted)">Between layout zones</span></div>
+    <div class="sp-row"><span class="sp-name">96</span><div class="sp-bar" style="width:96px"></div><span class="sp-val">96px</span><span style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted)">Hero sections, full-bleed padding</span></div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="group">
+    <div class="label">Corner Radius — Structured & Precise</div>
+    <div style="display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap">
+      <div style="text-align:center"><div style="width:56px;height:56px;border:0.5px solid var(--divider);background:var(--surface);border-radius:0"></div><div style="font-size:10px;color:var(--muted);margin-top:6px;font-family:'Barlow',sans-serif">0px<br>Layouts<br>Full-bleed</div></div>
+      <div style="text-align:center"><div style="width:56px;height:56px;border:0.5px solid var(--divider);background:var(--surface);border-radius:2px"></div><div style="font-size:10px;color:var(--muted);margin-top:6px;font-family:'Barlow',sans-serif">2px<br>Tags<br>Eyebrows</div></div>
+      <div style="text-align:center"><div style="width:56px;height:56px;border:0.5px solid var(--divider);background:var(--surface);border-radius:4px"></div><div style="font-size:10px;color:var(--muted);margin-top:6px;font-family:'Barlow',sans-serif">4px<br>UI max<br>Buttons</div></div>
+      <div style="margin-left:16px;font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);max-width:260px;line-height:1.6">AMSC design is structured and precise. Avoid rounded aesthetics. No rounded-full on any element. Full-bleed elements always radius 0.</div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="group">
+    <div class="label">Border Weights</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:16px"><div style="width:120px;height:0;border-top:0.5px solid var(--divider)"></div><span style="font-family:monospace;font-size:11px;color:var(--muted)">0.5px · Dividers, cards, separators</span></div>
+      <div style="display:flex;align-items:center;gap:16px"><div style="width:120px;height:0;border-top:1px solid var(--grey)"></div><span style="font-family:monospace;font-size:11px;color:var(--muted)">1px · Emphasis borders</span></div>
+      <div style="display:flex;align-items:center;gap:16px"><div style="width:120px;height:0;border-top:2px solid var(--red)"></div><span style="font-family:monospace;font-size:11px;color:var(--muted)">2px red · Accent bar — section break</span></div>
+      <div style="display:flex;align-items:center;gap:16px"><div style="width:120px;height:0;border-top:4px solid var(--red)"></div><span style="font-family:monospace;font-size:11px;color:var(--muted)">4px red · Cover page / hero bar max</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     COMPONENTS
+════════════════════════════════════════════════════════════ -->
+<div id="components" class="ds-section">
+
+  <div class="group">
+    <div class="label">Eyebrow Labels</div>
+    <div class="comp-grid">
+      <div class="comp-card"><div class="comp-title">Red Fill · Default</div><span class="eyebrow">Basketball · NBL Africa</span></div>
+      <div class="comp-card"><div class="comp-title">Ghost · Secondary</div><span class="eyebrow eyebrow-ghost">Sprint · 100m / 200m</span></div>
+      <div class="comp-card"><div class="comp-title">Bare Text · In-layout</div><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--red)">Force Production</span></div>
+    </div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);margin-top:8px">Eyebrows are always Oswald 600, always uppercase, always in red. They introduce every section and athlete category.</div>
+  </div>
+
+  <div class="group">
+    <div class="label">Metric Display — Antonio leads</div>
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="comp-title">Large · Accent (red)</div>
+        <div class="metric-large" style="color:var(--red)">10.3<span style="font-size:22px;color:var(--muted)">s</span></div>
+        <div class="metric-label">100m Personal Best</div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-title">Large · Primary (white)</div>
+        <div class="metric-large">91</div>
+        <div class="metric-label">Acceleration Score</div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-title">Small + Delta</div>
+        <div class="metric-sm">74 <span class="delta">▲ +12%</span></div>
+        <div class="metric-label">Sprint Composite · vs Baseline</div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-title">Data Label Row</div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="metric-sm" style="font-size:18px">2.87</span><span style="font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">10-Yard Split</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="metric-sm" style="font-size:18px">4.51</span><span style="font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">40-Yard Dash</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="metric-sm" style="font-size:18px;color:var(--red)">+8cm</span><span style="font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Vert Delta</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="do-dont" style="border:0.5px solid var(--divider);margin-top:12px">
+      <div class="do-box">
+        <div class="do-head do">Correct — number leads</div>
+        <div style="font-family:'Antonio',sans-serif;font-weight:700;font-size:28px;color:var(--off-white)">10.3</div>
+        <div style="font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">100m PB</div>
+      </div>
+      <div class="do-box" style="border-left:0.5px solid var(--divider)">
+        <div class="do-head dont">Wrong — label leads</div>
+        <div style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--muted)">100m PB: 10.3s</div>
+        <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);margin-top:4px;font-style:italic">Number buried after label</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="label">Stat Bar — Max 3 stats</div>
+    <div class="stat-bar">
+      <div class="stat-cell"><div class="stat-num accent">10.3</div><div class="stat-lbl">100m PB</div></div>
+      <div class="stat-cell"><div class="stat-num">#7</div><div class="stat-lbl">Kenya Rank</div></div>
+      <div class="stat-cell"><div class="stat-num">2026</div><div class="stat-lbl">Season</div></div>
+    </div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);margin-top:8px">Used at bottom of hybrid layouts. Max 3 stats. The single accented number gets red. All others remain off-white.</div>
+  </div>
+
+  <div class="group">
+    <div class="label">Quote Block — Athlete voice always leads</div>
+    <div class="comp-card" style="background:var(--surface);border:0.5px solid var(--divider)">
+      <div class="divider-red"></div>
+      <div class="quote-block">
+        <p>"The numbers don't lie. Every session I ran, every rep I lifted — the combine was just the moment it all showed up."</p>
+        <div class="attr">Simani Regau · Sprint · Kenya #7</div>
+      </div>
+    </div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);margin-top:8px">Use exact quotes only — never paraphrase the athlete. The red 2px bar precedes; the 3px left border marks the quote zone.</div>
+  </div>
+
+  <div class="group">
+    <div class="label">Buttons — One CTA per layout maximum</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn-primary">View Report</button>
+      <button class="btn-primary btn-ghost">Download PDF</button>
+      <button class="btn-primary" style="background:transparent;border:0.5px solid var(--muted);color:var(--muted);cursor:not-allowed">Disabled</button>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="label">Dividers</div>
+    <div class="divider-red"></div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);margin-bottom:14px">2px red · Major section break</div>
+    <div class="divider-thin"></div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted)">0.5px grey · Standard separator</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SOCIAL TEMPLATES — ALL 4
+════════════════════════════════════════════════════════════ -->
+<div id="templates" class="ds-section">
+
+  <!-- Template 1 -->
+  <div class="group">
+    <div class="label">Template 1 — The Result Post · Hybrid Layout</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6">The athlete achieved something. This is the proof. Photo: Hero mode. Layout: athlete photo dominant (72%) + stat bar (28%).</div>
+    <div style="max-width:300px">
+      <div class="tpl-frame" style="aspect-ratio:1">
+        <div class="photo-placeholder" style="height:72%;position:relative">
+          <div style="position:absolute;inset:0;background:linear-gradient(160deg,#0d0d0d,#1e1e1e)"></div>
+          <div class="photo-label" style="position:relative;z-index:1">HERO PHOTO<br>Competitive environment<br>High contrast · Dark vignette</div>
+          <div class="tpl-overlay"></div>
+          <div style="position:absolute;top:12px;left:12px"><span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:10px;color:rgba(245,245,248,.4);letter-spacing:.06em">AMSC</span></div>
+          <div style="position:absolute;bottom:14px;left:14px;right:14px;z-index:2">
+            <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:4px">Basketball · BAL Africa</div>
+            <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:26px;text-transform:uppercase;color:var(--off-white);line-height:.95">DERRICK<br>OGECHI</div>
+            <div style="font-family:'Barlow',sans-serif;font-size:10px;color:var(--grey);margin-top:4px">Nairobi City Thunder · Captain</div>
+          </div>
+        </div>
+        <div class="stat-bar" style="height:28%">
+          <div class="stat-cell"><div class="stat-num accent" style="font-size:18px">28</div><div class="stat-lbl" style="font-size:8px">Pts</div></div>
+          <div class="stat-cell"><div class="stat-num" style="font-size:18px">11</div><div class="stat-lbl" style="font-size:8px">Reb</div></div>
+          <div class="stat-cell"><div class="stat-num" style="font-size:18px">7</div><div class="stat-lbl" style="font-size:8px">Ast</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);margin-top:10px">Photo 72% · Stat bar 28% · Red on single defining number · Athlete name always larger than logo · AMSC quiet in top corner</div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- Template 2 -->
+  <div class="group">
+    <div class="label">Template 2 — The Process Post · Split Layout</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6">The work is ongoing. This is what it looks like. Photo: Documentary mode (real session, unposed). Layout: photo 55% / data panel 45%.</div>
+    <div style="max-width:380px">
+      <div class="grid2" style="border:0.5px solid var(--divider)">
+        <div class="photo-placeholder" style="min-height:160px">
+          <div class="photo-label">DOCUMENTARY PHOTO<br>Training session<br>Real · Unposed</div>
+        </div>
+        <div class="grid-cell" style="background:var(--surface)">
+          <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:8px">Force Production</div>
+          <div class="metric-large" style="font-size:36px">91</div>
+          <div class="metric-label">Acceleration Score</div>
+          <div class="divider-thin" style="margin:10px 0"></div>
+          <div style="font-family:'Barlow',sans-serif;font-size:10px;color:var(--grey);line-height:1.6">Session 14 · Phase 3 loading. Consistent output across all five attempts.</div>
+          <div style="margin-top:10px"><span class="metric-sm" style="font-size:16px;color:var(--red)">▲ +12%</span><div class="metric-label" style="font-size:8px">vs Baseline</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);margin-top:10px">Photo 55% · Data panel 45% · One metric headline · One delta · Documentary mode always</div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- Template 3 -->
+  <div class="group">
+    <div class="label">Template 3 — The Athlete Speaks Post · Sparse Layout</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6">The athlete owns the claim. AMSC never speaks for them. Use exact quotes only — never paraphrase. Photo: Hero or Documentary. Layout: sparse with quote anchored at bottom.</div>
+    <div style="max-width:300px">
+      <div class="tpl-frame" style="aspect-ratio:1">
+        <div class="photo-placeholder" style="height:100%;position:relative">
+          <div style="position:absolute;inset:0;background:linear-gradient(160deg,#111,#1a1a1a)"></div>
+          <div class="photo-label" style="position:relative;z-index:1">HERO OR DOCUMENTARY<br>Athlete in their environment</div>
+          <div style="position:absolute;top:12px;left:12px;z-index:2"><span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:10px;color:rgba(245,245,248,.4);letter-spacing:.06em">AMSC</span></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;height:65%;background:linear-gradient(to top,rgba(0,0,0,.97) 0%,transparent 100%);z-index:1"></div>
+          <div style="position:absolute;bottom:14px;left:14px;right:14px;z-index:2">
+            <div class="divider-red" style="margin:0 0 10px"></div>
+            <div class="quote-block" style="padding-left:12px">
+              <p style="font-size:11px">"Best condition of my whole professional career. Zero games missed."</p>
+              <div class="attr">Derrick Ogechi · NCT Captain</div>
+            </div>
+            <div style="margin-top:10px;display:flex;align-items:baseline;gap:8px">
+              <span style="font-family:'Antonio',sans-serif;font-weight:700;font-size:20px;color:var(--red)">0</span>
+              <span style="font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Games Missed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);margin-top:10px">Athlete's exact words only · Metric matches the quote · AMSC never adds commentary after the attribution</div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- Template 4 -->
+  <div class="group">
+    <div class="label">Template 4 — The Data Story Post · Dense Layout</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6">Before and after. The numbers tell the whole story. Photo optional — data is the visual. Use after each AMSC programme cycle.</div>
+    <div style="max-width:320px">
+      <div class="tpl-frame" style="padding:20px">
+        <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:12px">AMSC Combine · 8-Week Cycle</div>
+        <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;text-transform:uppercase;color:var(--off-white);line-height:1;margin-bottom:4px">Mohammed<br>Bajaber</div>
+        <div style="font-family:'Barlow',sans-serif;font-size:10px;color:var(--grey);margin-bottom:16px">Football · Kenya National Team</div>
+        <div class="divider-thin"></div>
+
+        <!-- Metric row -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:0.5px solid var(--divider)">
+          <div>
+            <div style="font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Acceleration Score</div>
+            <div style="font-family:'Antonio',sans-serif;font-weight:700;font-size:22px;color:var(--muted)">74</div>
+          </div>
+          <div style="font-family:'Antonio',sans-serif;font-size:20px;color:var(--red)">→</div>
+          <div style="text-align:right">
+            <div style="font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">After</div>
+            <div style="font-family:'Antonio',sans-serif;font-weight:700;font-size:22px;color:var(--off-white)">91</div>
+          </div>
+          <div style="font-family:'Antonio',sans-serif;font-size:14px;color:var(--red)">▲ +23%</div>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:0.5px solid var(--divider)">
+          <div>
+            <div style="font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Sprint Score</div>
+            <div style="font-family:'Antonio',sans-serif;font-weight:700;font-size:22px;color:var(--muted)">68</div>
+          </div>
+          <div style="font-family:'Antonio',sans-serif;font-size:20px;color:var(--red)">→</div>
+          <div style="text-align:right">
+            <div style="font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">After</div>
+            <div style="font-family:'Antonio',sans-serif;font-weight:700;font-size:22px;color:var(--off-white)">84</div>
+          </div>
+          <div style="font-family:'Antonio',sans-serif;font-size:14px;color:var(--red)">▲ +24%</div>
+        </div>
+
+        <div style="margin-top:14px;font-family:'Barlow',sans-serif;font-size:11px;color:var(--grey);font-style:italic;line-height:1.6">Eight weeks. Sport-specific conditioning.<br>This is what the work produces.</div>
+      </div>
+    </div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);margin-top:10px">The → delta arrow in red · Before muted, After off-white · Summary line closes with restraint · Real numbers only</div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- Layout modes -->
+  <div class="group">
+    <div class="label">Sparse vs Dense — Layout Decision</div>
+    <div class="do-dont" style="border:0.5px solid var(--divider)">
+      <div class="do-box">
+        <div class="do-head do">Sparse · Impact & Emotion</div>
+        <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);line-height:1.6">Brand awareness, campaign graphics, athlete name reveals. Max 3 competing elements. Dominant negative space is intentional — do not fill it. One metric maximum.</div>
+      </div>
+      <div class="do-box" style="border-left:0.5px solid var(--divider)">
+        <div class="do-head do" style="color:var(--off-white)">Dense · Data & Analysis</div>
+        <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);line-height:1.6">Performance reports, combine results, proposals, dashboards. Every zone works. Clear hierarchy: headline → metrics → supporting data → source. Numbers are visual anchors.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     CAPTION SYSTEM
+════════════════════════════════════════════════════════════ -->
+<div id="captions" class="ds-section">
+
+  <div style="background:var(--surface);border-left:3px solid var(--red);padding:14px 18px;margin-bottom:32px">
+    <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;color:var(--off-white);margin-bottom:6px">Universal Rules — Apply to All Captions</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--grey);line-height:1.8">
+      Lead with the number, never the label &nbsp;·&nbsp; Max 3 lines of copy &nbsp;·&nbsp; No exclamation marks &nbsp;·&nbsp;
+      No adjectives that aren't data ("incredible" means nothing, "10.3" means everything) &nbsp;·&nbsp;
+      Athlete's name is always the last or only attribution line &nbsp;·&nbsp;
+      AMSC never claims the result — the athlete does &nbsp;·&nbsp;
+      No motivational filler: no "beast mode", "crushing it", "on fire"
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="label">Caption 1 — Result Post</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);margin-bottom:10px">Structure: [NUMBER]. [What it represents]. / [One sentence — what the athlete did]. / [Athlete name]. [Club / Event].</div>
+    <div class="caption-block">
+      <div class="caption-line"><strong>10.3.</strong> Kenya's fastest this season.</div>
+      <div class="caption-line">Eight weeks. One system. Zero shortcuts.</div>
+      <div class="caption-line">Simani Regau. 2026 Kenya Sprint Rankings.</div>
+    </div>
+    <div class="caption-block">
+      <div class="caption-line"><strong>KPL Champion. Then Simba FC.</strong></div>
+      <div class="caption-line">The body was ready. The data said so.</div>
+      <div class="caption-line">Mohammed Bajaber. Built at AMSC.</div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="group">
+    <div class="label">Caption 2 — Process Post</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);margin-bottom:10px">Structure: [What we measured]. [What we found]. / [One behaviour that drove the result]. / [Athlete name] is building something.</div>
+    <div class="caption-block">
+      <div class="caption-line"><strong>Acceleration.</strong> Up 12% in six weeks.</div>
+      <div class="caption-line">Three sessions a week. Same track. Different athlete.</div>
+      <div class="caption-line">Mohammed Bajaber is building something.</div>
+    </div>
+    <div class="caption-block">
+      <div class="caption-line"><strong>Force.</strong> Measured. Applied. Repeated.</div>
+      <div class="caption-line">This is what sport-specific conditioning looks like.</div>
+      <div class="caption-line">The work continues. Nairobi, Kenya.</div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="group">
+    <div class="label">Caption 3 — Athlete Speaks Post</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);margin-bottom:10px">Structure: "[Athlete's exact words — referencing a specific number or result]" / — [Athlete name], [Title / Club]</div>
+    <div class="caption-block">
+      <div class="caption-line"><em>"Best condition of my whole professional career.<br>AMSC played a vital role — zero games missed."</em></div>
+      <div class="caption-line" style="margin-top:6px">— Derrick Ogechi, Nairobi City Thunder Captain</div>
+    </div>
+    <div style="background:var(--surface);border:0.5px solid var(--divider);padding:12px 14px;border-radius:2px;margin-top:8px">
+      <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);line-height:1.7">
+        Use exact quotes only — never paraphrase the athlete.<br>
+        The quote must reference a specific number or result.<br>
+        AMSC never adds commentary after the dash attribution.<br>
+        If no genuine quote is available — do not use this template.
+      </div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="group">
+    <div class="label">Caption 4 — Data Story Post</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);margin-bottom:10px">Structure: [Before number] became [after number]. / [Time period]. [How — one phrase]. / This is what the work produces.</div>
+    <div class="caption-block">
+      <div class="caption-line"><strong>74</strong> became <strong>91.</strong></div>
+      <div class="caption-line">Eight weeks. Sport-specific conditioning.</div>
+      <div class="caption-line">This is what the work produces.</div>
+    </div>
+    <div class="caption-block">
+      <div class="caption-line">Slower. Weaker. Less available.</div>
+      <div class="caption-line">Then AMSC Metrics found the gaps.</div>
+      <div class="caption-line">The numbers changed. So did the season.<br>Mohammed Bajaber. Football. Simba FC.</div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="group">
+    <div class="label">Hashtag Guidance — Max 5, All Specific</div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text"><code style="font-size:12px;color:var(--red)">#AMSCPerformance</code> — always included</div></div>
+      <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text"><code style="font-size:12px;color:var(--red)">#AMSCMetrics</code> — when data is the primary content</div></div>
+      <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text"><code style="font-size:12px;color:var(--red)">#AMSCCombine</code> — when combine scores are shown</div></div>
+      <div class="brand-rule-row"><div class="brand-dot grey"></div><div class="brand-rule-text">One sport-specific tag: <code style="font-size:12px;color:var(--grey)">#KenyaFootball</code>, <code style="font-size:12px;color:var(--grey)">#EastAfricaSprints</code>, <code style="font-size:12px;color:var(--grey)">#BALAfrica</code></div></div>
+      <div class="brand-rule-row" style="border-bottom:none"><div class="brand-dot grey"></div><div class="brand-rule-text">One location tag: <code style="font-size:12px;color:var(--grey)">#Nairobi</code> or <code style="font-size:12px;color:var(--grey)">#Kenya</code></div></div>
+    </div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);margin-top:10px">Never use generic fitness hashtags (#gains, #grind, #hustle, #fitness) — they undermine the elite positioning.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PHOTOGRAPHY
+════════════════════════════════════════════════════════════ -->
+<div id="photography" class="ds-section">
+
+  <div style="background:var(--surface);border-left:3px solid var(--red);padding:14px 18px;margin-bottom:32px">
+    <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;color:var(--off-white);margin-bottom:6px">The Core Rule</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey);line-height:1.7">Photography must honour the athlete's story, not illustrate AMSC's services. The athlete is always the protagonist. AMSC is always the system behind them.</div>
+  </div>
+
+  <div class="group">
+    <div class="label">The Three Photography Modes</div>
+
+    <div class="photo-mode">
+      <div class="photo-mode-name">Mode 1 — Hero</div>
+      <div style="font-family:'Oswald',sans-serif;font-size:11px;color:var(--grey);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">The athlete IS the content</div>
+      <div class="photo-mode-desc">
+        Full bleed photo, dark base, athlete facing camera or in peak action.<br>
+        <strong style="color:var(--off-white)">Treatment:</strong> High contrast, dark vignette on lower third, subject sharp.<br>
+        <strong style="color:var(--off-white)">Text placement:</strong> Bottom-weighted — name large, metrics in footer bar.<br>
+        <strong style="color:var(--off-white)">Use for:</strong> Athlete spotlights, high-profile event features, credibility posts.<br>
+        <strong style="color:var(--off-white)">Example:</strong> Derrick Ogechi result post.
+      </div>
+    </div>
+
+    <div class="photo-mode">
+      <div class="photo-mode-name">Mode 2 — Atmosphere</div>
+      <div style="font-family:'Oswald',sans-serif;font-size:11px;color:var(--grey);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">The photo sets the tone. Type tells the story.</div>
+      <div class="photo-mode-desc">
+        Full bleed photo treated as background — darker, less detail.<br>
+        <strong style="color:var(--off-white)">Treatment:</strong> Dark overlay 40–60% opacity black, subject may be partially obscured.<br>
+        <strong style="color:var(--off-white)">Text placement:</strong> Dominant, left-aligned, large display type over photo.<br>
+        <strong style="color:var(--off-white)">Use for:</strong> Brand awareness, campaign content, motivational posts.<br>
+        <strong style="color:var(--off-white)">Example:</strong> "Built for Speed" campaign post.
+      </div>
+    </div>
+
+    <div class="photo-mode">
+      <div class="photo-mode-name">Mode 3 — Documentary</div>
+      <div style="font-family:'Oswald',sans-serif;font-size:11px;color:var(--grey);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">Raw training footage. Real over polished.</div>
+      <div class="photo-mode-desc">
+        Training environment photos — tracks, courts, gyms, outdoor sessions.<br>
+        <strong style="color:var(--off-white)">Treatment:</strong> Minimal — colour grade only, no heavy overlays.<br>
+        <strong style="color:var(--off-white)">Text placement:</strong> Anchored bottom or side panel, clean data zone.<br>
+        <strong style="color:var(--off-white)">Use for:</strong> Ongoing work content, process posts, behind-the-scenes.<br>
+        <strong style="color:var(--off-white)">Example:</strong> Simani block start training content.
+      </div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="group">
+    <div class="label">Composition Rules</div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">Framing must be intentional — crop communicates the moment's energy. Block start = coil and tension. Post-game = exhaustion and triumph. Training = focus and discipline.</div></div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">Never crop an athlete's face or dominant body line without clear artistic intent.</div></div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">If the photo background is busy — apply a dark vignette or panel to isolate the athlete.</div></div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">The AMSC logo must always have a clean zone. If the photo bleeds into the logo position — add a subtle dark gradient or relocate the logo.</div></div>
+    <div class="brand-rule-row" style="border-bottom:none"><div class="brand-dot grey"></div><div class="brand-rule-text">Data shown must match the photo moment — combine photo from a night match with stats from that match. Mismatched data and photo context destroys credibility.</div></div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="group">
+    <div class="label">Photo + Data Coexistence</div>
+    <table class="token-table">
+      <tr><td style="color:var(--muted);font-size:11px">Photo shows</td><td style="color:var(--muted);font-size:11px">Data should show</td></tr>
+      <tr><td style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey)">Athlete in competition</td><td style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--off-white)">Competition result from that event</td></tr>
+      <tr><td style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey)">Athlete training</td><td style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--off-white)">Training metric from that cycle</td></tr>
+      <tr><td style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey)">Athlete post-result</td><td style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--off-white)">Career milestone or season stat</td></tr>
+      <tr><td style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey)">Athlete lifestyle moment</td><td style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--off-white)">Availability / consistency metric</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     BRAND RULES
+════════════════════════════════════════════════════════════ -->
+<div id="rules" class="ds-section">
+
+  <div class="group">
+    <div style="background:var(--surface);padding:20px;border-left:3px solid var(--red)">
+      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;text-transform:uppercase;color:var(--off-white);margin-bottom:8px">THE ATHLETE IS ALWAYS THE PROTAGONIST</div>
+      <div style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey);line-height:1.7">AMSC is the coach in the corner. Every design decision must honour this. The athlete's name is always larger than the AMSC logo. The achievement is always the headline. AMSC's role is always framing, never competing. Data and metrics belong to the athlete, not the brand.</div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="label">Authority Sequence in Athlete Content</div>
+    <div style="max-width:380px">
+      <div class="auth-row"><span class="auth-num">01</span><span class="auth-text">The photo — the athlete's presence</span></div>
+      <div class="auth-row"><span class="auth-num" style="color:var(--grey)">02</span><span class="auth-text">The quote — the athlete's voice</span></div>
+      <div class="auth-row"><span class="auth-num" style="color:var(--grey)">03</span><span class="auth-text">The data — the athlete's proof</span></div>
+      <div class="auth-row"><span class="auth-num" style="color:var(--grey)">04</span><span class="auth-text">The name — the athlete's identity</span></div>
+      <div class="auth-row" style="background:#0d0d0d;border-top:0.5px solid var(--divider)"><span class="auth-num" style="color:var(--muted);font-size:12px">—</span><span style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted)">AMSC logo · quiet · present · always last</span></div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="group">
+    <div class="label">Red Rules — What Red Hits</div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">Eyebrow labels and category tags</div></div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">The single most important metric per layout — one number, one layout</div></div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">Divider lines used as accent bars (2–4px max)</div></div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">Performance deltas and improvement indicators <span style="color:var(--red)">▲ +12%</span></div></div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">One CTA element per layout maximum</div></div>
+    <div class="brand-rule-row" style="border-bottom:none"><div class="brand-dot"></div><div class="brand-rule-text">Quote left-border indicator (3px left border on blockquotes)</div></div>
+  </div>
+
+  <div class="group">
+    <div class="label">Red Never Appears On</div>
+    <div class="brand-rule-row"><div class="brand-dot grey"></div><div class="brand-rule-text">Large background fills — red is an accent, not a surface</div></div>
+    <div class="brand-rule-row"><div class="brand-dot grey"></div><div class="brand-rule-text">Body text — body is always off-white or grey on dark</div></div>
+    <div class="brand-rule-row"><div class="brand-dot grey"></div><div class="brand-rule-text">Decorative elements with no functional purpose</div></div>
+    <div class="brand-rule-row" style="border-bottom:none"><div class="brand-dot grey"></div><div class="brand-rule-text">Multiple competing elements on the same layout</div></div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="group">
+    <div class="label">Logo Rules</div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">Always present · Always legible · Always quiet · Never competing</div></div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">Social: top-left or top-right corner · Documents: bottom-left or bottom-right</div></div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">Social max width: ~15–20% of canvas · Presentation max: ~10–15% of slide</div></div>
+    <div class="brand-rule-row"><div class="brand-dot grey"></div><div class="brand-rule-text">Never place logo over a busy photo zone without a dark gradient or contrast fix</div></div>
+    <div class="brand-rule-row" style="border-bottom:none"><div class="brand-dot grey"></div><div class="brand-rule-text">Athlete's name is always larger than the AMSC logo — no exceptions</div></div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="group">
+    <div class="label">Quality Check — Before Finalising Any Output</div>
+    <div style="display:flex;flex-direction:column;gap:1px">
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface)"><span style="font-family:'Antonio',sans-serif;font-size:14px;color:var(--red)">01</span><span style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey)">Can I identify the most important element within 2 seconds?</span></div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface)"><span style="font-family:'Antonio',sans-serif;font-size:14px;color:var(--red)">02</span><span style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey)">Is the athlete clearly the protagonist?</span></div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface)"><span style="font-family:'Antonio',sans-serif;font-size:14px;color:var(--red)">03</span><span style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey)">Is the AMSC logo legible but not competing?</span></div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface)"><span style="font-family:'Antonio',sans-serif;font-size:14px;color:var(--red)">04</span><span style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey)">Is red used in exactly one dominant zone?</span></div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface)"><span style="font-family:'Antonio',sans-serif;font-size:14px;color:var(--red)">05</span><span style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey)">Does this feel like it belongs next to Altis, EXOS, or Momentous?</span></div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface)"><span style="font-family:'Antonio',sans-serif;font-size:14px;color:var(--red)">06</span><span style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey)">Would this embarrass or elevate the AMSC brand?</span></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /ds-body -->
+</div><!-- /ds -->
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.ds-section').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.ds-tab').forEach(t => t.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>
