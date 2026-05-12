@@ -1170,6 +1170,104 @@ this skill, they augment it.
 
 ---
 
+---
+
+## 13. IMAGE GENERATION PROMPT MODIFIER
+
+Use this section whenever an AI image needs to be generated or edited for AMSC.
+
+**Workflow:**
+1. Claude assembles the full prompt from this section (Base Modifier + Sport block + Mode block + specific brief)
+2. Claude outputs it as a single copyable block in the chat
+3. Arnold pastes it directly into ChatGPT (chat.openai.com) and runs it
+
+No automation. No API. Claude builds the prompt — Arnold pastes it.
+Do not improvise brand parameters — always assemble from the blocks below.
+
+### 13.1 Base Modifier (Universal)
+
+Prepend to every AMSC image generation prompt without exception:
+
+```
+dark background, deep black (#000000) base, AMSC red accent (#a60a08) used once
+as a single dominant colour moment, editorial sports performance aesthetic,
+cinematic lighting with strong directional shadows, Oswald Bold typography where
+text is present, athlete as visual protagonist, Nike/NBA/EXOS visual language,
+no gradients, no light backgrounds, no decorative elements, high contrast,
+photorealistic, professional sports photography quality
+```
+
+### 13.2 Sport-Specific Additions
+
+Append the relevant block after the base modifier based on athlete sport:
+
+**Basketball**
+```
+basketball court environment or arena context, competitive intensity,
+peak action or post-result raw emotion, Kenya basketball or BAL Africa League context
+```
+
+**Sprint / Track**
+```
+track and field environment, explosive starting position or peak velocity,
+motion blur on background to emphasise speed, Kenya athletics aesthetic
+```
+
+**Football**
+```
+football pitch or training ground, dynamic positional play or aerial moment,
+East African football context, kit-forward framing
+```
+
+### 13.3 Photography Mode Additions
+
+Append the relevant block based on the Section 5 photography mode selected:
+
+**MODE 1 — Hero**
+```
+full bleed athlete portrait, subject sharp and dominant, dark vignette on lower
+third, competitive environment, athlete facing camera or in peak action
+```
+
+**MODE 2 — Atmosphere**
+```
+athlete partially abstracted, dark overlay treatment, large negative space
+for typography, mood-forward composition
+```
+
+**MODE 3 — Documentary**
+```
+raw training footage aesthetic, real environment (track/court/gym),
+unposed, authentic moment, minimal treatment
+```
+
+### 13.4 Usage Pattern
+
+Assemble: `[Base Modifier] + [Sport block] + [Mode block] + [Specific brief]`
+
+Output as a single copyable block for Arnold to paste into ChatGPT.
+
+**Example output — Simani Regau sprint post, Hero mode:**
+
+---
+*Copy everything below this line into ChatGPT:*
+
+dark background, deep black (#000000) base, AMSC red accent (#a60a08) used once as a single dominant colour moment, editorial sports performance aesthetic, cinematic lighting with strong directional shadows, Oswald Bold typography where text is present, athlete as visual protagonist, Nike/NBA/EXOS visual language, no gradients, no light backgrounds, no decorative elements, high contrast, photorealistic, professional sports photography quality, track and field environment, explosive starting position or peak velocity, motion blur on background to emphasise speed, Kenya athletics aesthetic, full bleed athlete portrait, subject sharp and dominant, dark vignette on lower third, competitive environment, athlete facing camera or in peak action, Simani Regau, Kenya sprinter, 100m block start, Nairobi 2026
+
+---
+
+### 13.5 What Not to Add
+
+Never add to an AMSC image generation prompt:
+- White or light backgrounds
+- Gradient fills or lens flares
+- Multiple red elements ("red shoes and red jersey and red background")
+- Generic fitness/gym stock photo descriptors ("motivational", "inspiring", "powerful")
+- Emoji or decorative overlay descriptions
+- Any colour outside the AMSC palette
+
+---
+
 *This skill file is a living document. Update after every major design iteration,
 new content format, or brand evolution decision.*
 *Version 1.0 — Built in session with Arnold, April 2026.*
@@ -1179,4 +1277,8 @@ new content format, or brand evolution decision.*
 *Version 3.0 — Added Design Execution Stack (Section 12): tri-engine architecture*
 *(Claude Design primary, Stitch secondary, Figma tertiary), comparison workflow,*
 *supporting skill stack, engine selection guide, and ui-ux-pro-max integration.*
+*May 2026.*
+*Version 4.0 — Added Image Generation Prompt Modifier (Section 13): base modifier,*
+*sport-specific additions, photography mode additions, usage pattern, and guard rules.*
+*ChatGPT (GPT-4o) set as primary image generation tool, replacing Nano Banana.*
 *May 2026.*
