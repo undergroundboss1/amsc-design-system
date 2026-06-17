@@ -32,7 +32,7 @@ Every design decision must honour this:
 
 | Token | Hex | Role |
 |---|---|---|
-| `--amsc-red` | `#a60a08` | Primary accent — surgical, not decorative |
+| `--amsc-red` | `#a60a08` | Primary accent — see Red Budget below |
 | `--amsc-deep-red` | `#820b0b` | Hover states, secondary red |
 | `--amsc-black` | `#000000` | Full-bleed backgrounds |
 | `--amsc-surface` | `#1a1a1a` | Card surfaces, panels |
@@ -43,21 +43,63 @@ Every design decision must honour this:
 
 **No other colours are permitted.** No gold, green, blue, or partner brand colours in AMSC-primary layouts.
 
-### Red Usage Rules
+### The Red Budget
 
-Red appears on:
+Every layout gets **one dominant red moment** — and only one. The dominant red is the thing the eye must land on first.
+
+**Dominant red — pick exactly ONE per layout:**
+- Red-backed headline highlight (a key phrase on a solid red bar)
+- The single hero metric in red (one number, one layout)
+- One CTA element (button or download tag)
+
+**Structural red — quiet and functional, does NOT count against the budget:**
 - Eyebrow labels and category tags
-- The single most important metric per layout (one number, one layout)
-- Divider lines used as accent bars (2–4px max)
+- Thin bars and dividers (2–4px)
+- Card top-borders
+- Quote left-borders (3px)
 - Performance deltas `▲ +12%`
-- One CTA element per layout maximum
-- Quote left-border indicator (3px left border)
 
-Red never appears on:
-- Large background fills
+**The squint test:** if you squint and more than one red element fights to be "the point," you've overspent. Pull one back to structural, or remove it.
+
+**Red never appears on:**
+- Large background fills — red is an accent and a bar, never a panel fill
 - Body text
 - Decorative elements with no function
-- Multiple competing elements on the same layout
+- Multiple competing dominant elements on the same layout
+
+---
+
+## Logos
+
+### Two Marks Only
+The full wordmark **AMSC PERFORMANCE** is primary. The C-stopwatch icon is the standalone symbol — use it as a watermark, app/profile mark, or where the full wordmark won't fit.
+
+### File Reference
+| File | Use On |
+|---|---|
+| Logo-02.png | Dark backgrounds — primary (red on black) |
+| Logo-05.png | Light backgrounds (all black) |
+| Logo-14.png | C-clock icon, red on black — icon usage, app, favicon |
+
+### Colour Rule
+Colour is locked to two versions: red (`#a60a08`) on dark backgrounds. Off-white (`#f5f5f8`) on red bars or busy photography. Never any other colour. Never a gradient.
+
+### Clear Space
+Keep clear space around the wordmark equal to the height of the "C" icon. Nothing — text, photo edges, other logos — intrudes into that zone.
+
+### Minimum Size
+Wordmark never below 90px wide on screen. Social: logo width ≈ 15–20% of canvas max. Presentations: 10–15% of slide width. Icon never below 24px.
+
+### Logo Placement
+- Social: top-left or top-right corner
+- Documents and reports: bottom-left or bottom-right
+- Always in its own clean zone — never over a busy photo area without a dark gradient or backing panel
+
+### Never
+Never stretch, rotate, recolour outside the two approved versions, add effects (shadow/glow/bevel), or place the red mark on a red or mid-tone background where contrast fails.
+
+### Icon as Watermark
+The C-stopwatch icon may sit large and faded (4–8% opacity) in the background of brand frames, bleeding off an edge. One watermark per layout, behind content, never overlapping focal text. Adds institutional weight without spending the red budget.
 
 ---
 
@@ -126,7 +168,7 @@ All spacing uses multiples of 8px:
 | `--space-8` | 64px | Between layout zones |
 | `--space-12` | 96px | Hero sections, full-bleed padding |
 
-**Corner radius:** 0px for layouts and full-bleed zones. 2px for tags and eyebrow pills. 4px maximum for UI elements. No `border-radius: 9999px` (rounded-full) on any element.
+**Corner radius:** 0px for layouts and full-bleed zones. 2px for tags and eyebrow pills. 4px maximum for UI elements. No `border-radius: 9999px` on any element.
 
 **Border weight:** 0.5px for dividers and cards. 2px red for section accent bars. 4px red maximum for cover/hero bars.
 
@@ -151,6 +193,24 @@ Use when: performance reports, combine results, proposals, dashboards.
 Sparse hero zone on top + dense data zone at bottom.
 - The most powerful AMSC format for athlete spotlights
 - Example: athlete photo top 72% / stat bar bottom 28%
+
+---
+
+## Signature Elements — The AMSC Look
+
+Four named design devices that define the AMSC visual language:
+
+**01 — Red Horizontal Bars as Structure**
+Narrow, contained, full-width red bars as structural dividers — the tagline strip, eyebrow bars, section separators. Height stays limited (a strip, never a panel). This is structural red: it organises, it doesn't compete. Red as a large background surface is still forbidden.
+
+**02 — Red-Backed Headline Highlight**
+One key phrase sits on a solid red bar inside the headline: `BUILT AROUND [YOUR SQUAD.]` where the bracketed phrase is red-backed. This is the dominant red moment — it expresses the budget, it doesn't break it. One highlight per layout, on the single most important phrase.
+
+**03 — Stopwatch Watermark**
+The C-stopwatch icon, large and faded (4–8% opacity), bleeding off an edge of a brand frame. Institutional weight without competing for attention. One per layout, behind content, never overlapping focal text.
+
+**04 — Founder Portrait on the Close**
+Arnold's portrait is permitted on closing and contact frames only — the human signature behind the institution. Never on content, proof, or methodology slides.
 
 ---
 
@@ -193,6 +253,11 @@ The photo sets tone. Type tells the story. Dark overlay 40–60% opacity. Domina
 
 ### Mode 3 — Documentary
 Raw training footage. Real over polished. Minimal treatment — colour grade only. Data panel alongside. Use for process posts and behind-the-scenes.
+
+### Signature Grade — Selective Desaturation
+The AMSC cover grade: the hero athlete stays in full colour while surrounding players are desaturated to near-black-and-white. Isolates the protagonist and carries the protagonist rule into the photography itself. Use on covers and athlete spotlights where one figure must dominate a busy frame.
+
+This is a photo-edit technique applied before the image enters a template — not a layout rule. When the hero cannot be cleanly isolated, fall back to Mode 1 Hero with a dark vignette instead.
 
 ---
 
@@ -246,7 +311,7 @@ This is what the work produces.
 - Case: Uppercase
 - Tracking: 0.18–0.22em
 - Colour: always red (`#a60a08`)
-- Border radius: 2px (pill version) or bare text
+- Border radius: 1px (pill version) or bare text
 
 ### Metric Display
 - Font: Antonio 700 for the number, Barlow for the label
@@ -268,7 +333,7 @@ This is what the work produces.
 - Font: Oswald 600, uppercase, 0.14em tracking
 - Primary: red fill (`#a60a08`), hover deep red (`#820b0b`)
 - Ghost: transparent, 0.5px off-white border
-- Border radius: 2px
+- Border radius: 1px
 - One CTA per layout maximum
 
 ---
@@ -290,7 +355,7 @@ This is what the work produces.
 - Icon: Logo-14.png (C-clock icon, red on black)
 - Instagram: @amscperformance
 - Location: The Courtyard, Vanga Rd, Nairobi, Kenya
-- Contact: amscperformance@gmail.com
+- Contact: admin@amscperformance.com
 
 ---
 
@@ -304,4 +369,4 @@ Use these to sense-check quality:
 
 ---
 
-*AMSC Design System v2.0 — April 2026*
+*AMSC Performance Design System v3.0 — June 2026*
