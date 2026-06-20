@@ -75,14 +75,23 @@ Every layout gets **one dominant red moment** — and only one. The dominant red
 The full wordmark **AMSC PERFORMANCE** is primary. The C-stopwatch icon is the standalone symbol — use it as a watermark, app/profile mark, or where the full wordmark won't fit.
 
 ### File Reference
-| File | Use On |
-|---|---|
-| Logo-02.png | Dark backgrounds — primary (red on black) |
-| Logo-05.png | Light backgrounds (all black) |
-| Logo-14.png | C-clock icon, red on black — icon usage, app, favicon |
+All marks live in the [`/logos`](logos) folder as transparent PNGs (2084×2084). Naming: `amsc-[mark]-[colourway].png`.
+
+| File | Mark | Colourway | Use on |
+|---|---|---|---|
+| `logos/amsc-wordmark-black-red.png` | Wordmark | Black + red accent | **Primary** — light / neutral backgrounds |
+| `logos/amsc-icon-black-red.png` | Icon | Black + red accent | **Primary / favicon** — light / neutral |
+| `logos/amsc-wordmark-red.png` | Wordmark | All red | Dark / black / photo backgrounds |
+| `logos/amsc-icon-red.png` | Icon | All red | Dark / black / photo backgrounds |
+| `logos/amsc-wordmark-black.png` | Wordmark | All black | Mono — light backgrounds, print |
+| `logos/amsc-icon-black.png` | Icon | All black | Mono — light backgrounds, print |
+| `logos/amsc-wordmark-red-black.png` | Wordmark | Red + black accent | Alternate — light / neutral |
+| `logos/amsc-icon-red-black.png` | Icon | Red + black accent | Alternate — light / neutral |
+
+**Gap:** there is no off-white knock-out version for placing the logo directly on a red bar or a busy mid-tone photo. On dark layouts use the all-red mark; an off-white version should be added when available.
 
 ### Colour Rule
-Colour is locked to two versions: red (`#a60a08`) on dark backgrounds. Off-white (`#f5f5f8`) on red bars or busy photography. Never any other colour. Never a gradient.
+On dark backgrounds use the all-red mark. On light/neutral backgrounds use the black+red primary (or all-black mono). Off-white (`#f5f5f8`) on red bars or busy photography once that version exists. Never any other colour. Never a gradient.
 
 ### Clear Space
 Keep clear space around the wordmark equal to the height of the "C" icon. Nothing — text, photo edges, other logos — intrudes into that zone.
@@ -350,9 +359,10 @@ This is what the work produces.
 
 ## Brand Assets
 
-- Logo on dark: Logo-02.png (red on black)
-- Logo on light: Logo-05.png (all black)
-- Icon: Logo-14.png (C-clock icon, red on black)
+- Logo on dark: `logos/amsc-wordmark-red.png` (all red)
+- Logo on light: `logos/amsc-wordmark-black-red.png` (black + red, primary) or `logos/amsc-wordmark-black.png` (mono)
+- Icon / favicon: `logos/amsc-icon-black-red.png` (light) · `logos/amsc-icon-red.png` (dark)
+- Full asset library: [`/logos`](logos) — see File Reference under Logos
 - Instagram: @amscperformance
 - Location: The Courtyard, Vanga Rd, Nairobi, Kenya
 - Contact: admin@amscperformance.com

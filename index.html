@@ -94,15 +94,21 @@
 .chip.struct{background:transparent;border:0.5px solid var(--muted);color:var(--grey)}
 .hl{background:var(--red);color:#fff;padding:0 8px}
 .logo-stage{display:flex;gap:1px;background:var(--divider);flex-wrap:wrap}
-.logo-cell{background:var(--surface);padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;flex:1;min-width:200px}
+.logo-cell{background:var(--surface);padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;flex:1;min-width:200px}
 .logo-cell.onred{background:var(--red)}
-.logo-cell img{max-width:100%;height:auto;display:block}
-.logo-cap{font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.logo-cell.onred .logo-cap{color:rgba(255,255,255,.7)}
-.logo-slot{width:100%;min-height:90px;display:flex;align-items:center;justify-content:center;border:0.5px dashed var(--muted);border-radius:2px;background:repeating-linear-gradient(45deg,transparent,transparent 8px,rgba(255,255,255,.02) 8px,rgba(255,255,255,.02) 16px)}
-.logo-slot span{font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.logo-slot.onred{border-color:rgba(255,255,255,.5)}
-.logo-slot.onred span{color:rgba(255,255,255,.85)}
+.logo-cell.onlight{background:var(--off-white)}
+.logo-cell img{display:block;height:auto;object-fit:contain}
+.logo-cell img.wm{width:190px;max-width:100%}
+.logo-cell img.ic{width:84px}
+.logo-cap{font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center}
+.logo-cap b{color:var(--off-white);font-weight:600}
+.logo-cell.onred .logo-cap{color:rgba(255,255,255,.75)}
+.logo-cell.onred .logo-cap b{color:#fff}
+.logo-cell.onlight .logo-cap{color:var(--muted)}
+.logo-cell.onlight .logo-cap b{color:#111}
+.logo-file{font-family:monospace;font-size:9px;color:var(--muted);margin-top:2px;display:block;text-transform:none;letter-spacing:0}
+.logo-cell.onred .logo-file{color:rgba(255,255,255,.6)}
+.logo-cell.onlight .logo-file{color:#888}
 </style>
 </head>
 <body style="margin:0;padding:0;background:#000">
@@ -233,28 +239,58 @@
 <!-- LOGOS -->
 <div id="logos" class="ds-section">
   <div class="group">
-    <div class="label">Primary Marks — Asset Slots</div>
-    <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px">Logo files are uploaded directly into Claude Design as brand assets — they are not embedded here. The slots below define which version goes where.</div>
+    <div class="label">Asset Library — Live Files</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px">The real logo files live in the <span style="font-family:monospace;color:var(--grey)">/logos</span> folder of this repo as transparent PNGs (2084×2084). Each is shown below on its intended background. Filenames follow <span style="font-family:monospace;color:var(--grey)">amsc-[mark]-[colourway].png</span>.</div>
+
+    <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:8px">Primary · Black + Red · Light & Neutral Backgrounds</div>
+    <div class="logo-stage">
+      <div class="logo-cell onlight">
+        <img class="wm" src="logos/amsc-wordmark-black-red.png" alt="AMSC Performance wordmark, black with red accent">
+        <div class="logo-cap"><b>Wordmark · Primary</b><span class="logo-file">amsc-wordmark-black-red.png</span></div>
+      </div>
+      <div class="logo-cell onlight">
+        <img class="ic" src="logos/amsc-icon-black-red.png" alt="AMSC C-stopwatch icon, black with red accent">
+        <div class="logo-cap"><b>Icon · Primary / Favicon</b><span class="logo-file">amsc-icon-black-red.png</span></div>
+      </div>
+    </div>
+
+    <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin:18px 0 8px">On Dark · All Red · Black & Photo Backgrounds</div>
     <div class="logo-stage">
       <div class="logo-cell">
-        <div class="logo-slot"><span>WORDMARK · RED</span></div>
-        <div class="logo-cap">Wordmark · Red · on dark — Logo-02.png</div>
+        <img class="wm" src="logos/amsc-wordmark-red.png" alt="AMSC Performance wordmark, all red">
+        <div class="logo-cap"><b>Wordmark · On Dark</b><span class="logo-file">amsc-wordmark-red.png</span></div>
       </div>
       <div class="logo-cell">
-        <div class="logo-slot" style="max-width:120px"><span>ICON · RED</span></div>
-        <div class="logo-cap">C-Stopwatch Icon · Red · on dark — Logo-14.png</div>
+        <img class="ic" src="logos/amsc-icon-red.png" alt="AMSC C-stopwatch icon, all red">
+        <div class="logo-cap"><b>Icon · On Dark</b><span class="logo-file">amsc-icon-red.png</span></div>
       </div>
     </div>
-    <div class="logo-stage" style="margin-top:1px">
-      <div class="logo-cell onred">
-        <div class="logo-slot onred"><span>WORDMARK · WHITE</span></div>
-        <div class="logo-cap">Wordmark · Off-White · on red / busy photo</div>
+
+    <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px">Mono · All Black · Light Backgrounds & Print</div>
+    <div class="logo-stage">
+      <div class="logo-cell onlight">
+        <img class="wm" src="logos/amsc-wordmark-black.png" alt="AMSC Performance wordmark, all black">
+        <div class="logo-cap"><b>Wordmark · Mono Black</b><span class="logo-file">amsc-wordmark-black.png</span></div>
       </div>
-      <div class="logo-cell onred">
-        <div class="logo-slot onred" style="max-width:120px"><span>ICON · WHITE</span></div>
-        <div class="logo-cap">C-Stopwatch Icon · Off-White · on red / busy photo</div>
+      <div class="logo-cell onlight">
+        <img class="ic" src="logos/amsc-icon-black.png" alt="AMSC C-stopwatch icon, all black">
+        <div class="logo-cap"><b>Icon · Mono Black</b><span class="logo-file">amsc-icon-black.png</span></div>
       </div>
     </div>
+
+    <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px">Alternate · Red + Black · Light & Neutral Backgrounds</div>
+    <div class="logo-stage">
+      <div class="logo-cell onlight">
+        <img class="wm" src="logos/amsc-wordmark-red-black.png" alt="AMSC Performance wordmark, red with black accent">
+        <div class="logo-cap"><b>Wordmark · Alt</b><span class="logo-file">amsc-wordmark-red-black.png</span></div>
+      </div>
+      <div class="logo-cell onlight">
+        <img class="ic" src="logos/amsc-icon-red-black.png" alt="AMSC C-stopwatch icon, red with black accent">
+        <div class="logo-cap"><b>Icon · Alt</b><span class="logo-file">amsc-icon-red-black.png</span></div>
+      </div>
+    </div>
+
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);line-height:1.6;margin-top:14px;padding:12px 14px;background:var(--surface);border-left:3px solid var(--red)">Gap to note: there is no <em>off-white knock-out</em> version for placing the logo directly on a red bar or a busy mid-tone photo. On dark layouts use the all-red mark; on red bars or noisy photography, drop in an off-white version once it exists.</div>
   </div>
 
   <hr class="rule">
@@ -275,11 +311,11 @@
     <div class="label">Icon as Watermark</div>
     <div style="background:var(--surface);padding:20px;display:flex;align-items:center;gap:24px;flex-wrap:wrap">
       <div style="position:relative;width:200px;height:120px;background:#000;border:0.5px solid var(--divider);overflow:hidden;flex-shrink:0">
-        <div style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-family:'Oswald',sans-serif;font-weight:700;font-size:90px;color:var(--off-white);opacity:0.06;line-height:1">C</div>
+        <img src="logos/amsc-icon-red.png" alt="" style="position:absolute;right:-26px;top:50%;transform:translateY(-50%);width:130px;height:auto;opacity:0.08">
         <div style="position:absolute;left:14px;top:14px;font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.18em;color:var(--red)">THE SOLUTION</div>
         <div style="position:absolute;left:14px;top:32px;font-family:'Oswald',sans-serif;font-weight:700;font-size:15px;color:var(--off-white);line-height:1.05">BUILT AROUND<br>YOUR SQUAD.</div>
       </div>
-      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);line-height:1.7;max-width:340px">The C-stopwatch icon may sit large and faded in the background of brand frames — opacity 4–8%, bleeding off an edge, never overlapping the focal text. One watermark per layout. It adds institutional weight without spending the red budget. <span style="color:var(--grey)">(Placeholder glyph shown — drop the real icon asset into Claude Design.)</span></div>
+      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);line-height:1.7;max-width:340px">The C-stopwatch icon may sit large and faded in the background of brand frames — opacity 4–8%, bleeding off an edge, never overlapping the focal text. One watermark per layout. It adds institutional weight without spending the red budget. <span style="color:var(--grey)">(Shown: <span style="font-family:monospace">amsc-icon-red.png</span> at 8% opacity.)</span></div>
     </div>
   </div>
 </div>

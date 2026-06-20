@@ -13,6 +13,22 @@
 | `tokens.css` | CSS custom properties — all design tokens as a standalone importable file |
 | `SKILL.md` | Full AMSC brand skill — upload into Claude Design at project start |
 | `amsc_design_system_v3.html` | Embeddable design system fragment — same content as index.html, no doctype wrapper |
+| `logos/` | Logo asset library — 8 transparent PNGs (icon + wordmark × 4 colourways) |
+
+---
+
+## Logo Assets
+
+The [`/logos`](logos) folder holds the full mark set as transparent PNGs (2084×2084). Naming: `amsc-[mark]-[colourway].png`.
+
+| Colourway | Wordmark | Icon | Use on |
+|---|---|---|---|
+| Black + red (**primary**) | `amsc-wordmark-black-red.png` | `amsc-icon-black-red.png` | Light / neutral backgrounds, favicon |
+| All red | `amsc-wordmark-red.png` | `amsc-icon-red.png` | Dark / black / photo backgrounds |
+| All black (mono) | `amsc-wordmark-black.png` | `amsc-icon-black.png` | Light backgrounds, print |
+| Red + black (alt) | `amsc-wordmark-red-black.png` | `amsc-icon-red-black.png` | Light / neutral backgrounds |
+
+No off-white knock-out version exists yet — use the all-red mark on dark layouts until one is added.
 
 ---
 

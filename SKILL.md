@@ -858,13 +858,20 @@ Apply all seven questions from Section 7.3 before delivering.
 ## 10. AMSC ASSET REFERENCE
 
 ### 10.1 Logo Files
-| File | Description | Use on |
-|---|---|---|
-| Logo-01.png | Black on black | Internal / embossed |
-| Logo-02.png | Red on black full logo | Dark backgrounds — primary |
-| Logo-05.png | All black | Light backgrounds |
-| Logo-13.png | Black with red accent | Neutral backgrounds |
-| Logo-14.png | C-clock icon, red on black | Icon usage, app, favicon |
+All marks live in the `/logos` folder of the design-system repo as transparent PNGs (2084×2084). Naming convention: `amsc-[mark]-[colourway].png` where mark is `wordmark` or `icon`.
+
+| File | Mark | Colourway | Use on |
+|---|---|---|---|
+| `amsc-wordmark-black-red.png` | Wordmark | Black + red accent | **Primary** — light / neutral backgrounds |
+| `amsc-icon-black-red.png` | Icon | Black + red accent | **Primary / favicon** — light / neutral |
+| `amsc-wordmark-red.png` | Wordmark | All red | Dark / black / photo backgrounds |
+| `amsc-icon-red.png` | Icon | All red | Dark / black / photo backgrounds (and faded watermark) |
+| `amsc-wordmark-black.png` | Wordmark | All black | Mono — light backgrounds, print |
+| `amsc-icon-black.png` | Icon | All black | Mono — light backgrounds, print |
+| `amsc-wordmark-red-black.png` | Wordmark | Red + black accent | Alternate — light / neutral |
+| `amsc-icon-red-black.png` | Icon | Red + black accent | Alternate — light / neutral |
+
+Note: no off-white knock-out version exists yet for placing on red bars or busy photography — use the all-red mark on dark layouts until one is added.
 
 ### 10.2 Contact & Handle
 - Email: amscperformance@gmail.com
