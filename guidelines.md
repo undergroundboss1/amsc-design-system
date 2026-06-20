@@ -83,15 +83,17 @@ All marks live in the [`/logos`](logos) folder as transparent PNGs (2084×2084).
 | `logos/amsc-icon-black-red.png` | Icon | Black + red accent | **Primary / favicon** — light / neutral |
 | `logos/amsc-wordmark-red.png` | Wordmark | All red | Dark / black / photo backgrounds |
 | `logos/amsc-icon-red.png` | Icon | All red | Dark / black / photo backgrounds |
+| `logos/amsc-wordmark-white.png` | Wordmark | Off-white knock-out | Red bars & busy photography |
+| `logos/amsc-icon-white.png` | Icon | Off-white knock-out | Red bars & busy photography |
 | `logos/amsc-wordmark-black.png` | Wordmark | All black | Mono — light backgrounds, print |
 | `logos/amsc-icon-black.png` | Icon | All black | Mono — light backgrounds, print |
 | `logos/amsc-wordmark-red-black.png` | Wordmark | Red + black accent | Alternate — light / neutral |
 | `logos/amsc-icon-red-black.png` | Icon | Red + black accent | Alternate — light / neutral |
 
-**Gap:** there is no off-white knock-out version for placing the logo directly on a red bar or a busy mid-tone photo. On dark layouts use the all-red mark; an off-white version should be added when available.
+Both marks are covered across every background: red for dark/photo, off-white for red bars and busy photography, black/black+red for light.
 
 ### Colour Rule
-On dark backgrounds use the all-red mark. On light/neutral backgrounds use the black+red primary (or all-black mono). Off-white (`#f5f5f8`) on red bars or busy photography once that version exists. Never any other colour. Never a gradient.
+On dark backgrounds use the all-red mark. On red bars or busy mid-tone photography use the off-white knock-out (`#f5f5f8`). On light/neutral backgrounds use the black+red primary (or all-black mono). Never any other colour. Never a gradient.
 
 ### Clear Space
 Keep clear space around the wordmark equal to the height of the "C" icon. Nothing — text, photo edges, other logos — intrudes into that zone.
@@ -360,8 +362,9 @@ This is what the work produces.
 ## Brand Assets
 
 - Logo on dark: `logos/amsc-wordmark-red.png` (all red)
+- Logo on red bar / busy photo: `logos/amsc-wordmark-white.png` (off-white knock-out)
 - Logo on light: `logos/amsc-wordmark-black-red.png` (black + red, primary) or `logos/amsc-wordmark-black.png` (mono)
-- Icon / favicon: `logos/amsc-icon-black-red.png` (light) · `logos/amsc-icon-red.png` (dark)
+- Icon / favicon: `logos/amsc-icon-black-red.png` (light) · `logos/amsc-icon-red.png` (dark) · `logos/amsc-icon-white.png` (on red/photo)
 - Full asset library: [`/logos`](logos) — see File Reference under Logos
 - Instagram: @amscperformance
 - Location: The Courtyard, Vanga Rd, Nairobi, Kenya

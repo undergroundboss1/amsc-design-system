@@ -25,10 +25,11 @@ The [`/logos`](logos) folder holds the full mark set as transparent PNGs (2084×
 |---|---|---|---|
 | Black + red (**primary**) | `amsc-wordmark-black-red.png` | `amsc-icon-black-red.png` | Light / neutral backgrounds, favicon |
 | All red | `amsc-wordmark-red.png` | `amsc-icon-red.png` | Dark / black / photo backgrounds |
+| Off-white (knock-out) | `amsc-wordmark-white.png` | `amsc-icon-white.png` | Red bars & busy photography |
 | All black (mono) | `amsc-wordmark-black.png` | `amsc-icon-black.png` | Light backgrounds, print |
 | Red + black (alt) | `amsc-wordmark-red-black.png` | `amsc-icon-red-black.png` | Light / neutral backgrounds |
 
-No off-white knock-out version exists yet — use the all-red mark on dark layouts until one is added.
+Both marks are covered across every background — no gaps.
 
 ---
 

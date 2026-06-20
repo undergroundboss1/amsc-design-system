@@ -866,12 +866,14 @@ All marks live in the `/logos` folder of the design-system repo as transparent P
 | `amsc-icon-black-red.png` | Icon | Black + red accent | **Primary / favicon** — light / neutral |
 | `amsc-wordmark-red.png` | Wordmark | All red | Dark / black / photo backgrounds |
 | `amsc-icon-red.png` | Icon | All red | Dark / black / photo backgrounds (and faded watermark) |
+| `amsc-wordmark-white.png` | Wordmark | Off-white knock-out | Red bars & busy photography |
+| `amsc-icon-white.png` | Icon | Off-white knock-out | Red bars & busy photography |
 | `amsc-wordmark-black.png` | Wordmark | All black | Mono — light backgrounds, print |
 | `amsc-icon-black.png` | Icon | All black | Mono — light backgrounds, print |
 | `amsc-wordmark-red-black.png` | Wordmark | Red + black accent | Alternate — light / neutral |
 | `amsc-icon-red-black.png` | Icon | Red + black accent | Alternate — light / neutral |
 
-Note: no off-white knock-out version exists yet for placing on red bars or busy photography — use the all-red mark on dark layouts until one is added.
+Both marks are covered across every background: red on dark/photo, off-white on red bars and busy photography, black/black+red on light.
 
 ### 10.2 Contact & Handle
 - Email: amscperformance@gmail.com
