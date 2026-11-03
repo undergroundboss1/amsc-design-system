@@ -23,8 +23,8 @@ The [`/logos`](logos) folder holds the full mark set as transparent PNGs (2084×
 
 | Colourway | Wordmark | Icon | Use on |
 |---|---|---|---|
-| Black + red (**primary**) | `amsc-wordmark-black-red.png` | `amsc-icon-black-red.png` | Light / neutral backgrounds, favicon |
-| All red | `amsc-wordmark-red.png` | `amsc-icon-red.png` | Dark / black / photo backgrounds |
+| Black + red (**primary**) | `amsc-wordmark-black-red.png` | `amsc-icon-black-red.png` | White / light backgrounds (the default), favicon |
+| All red | `amsc-wordmark-red.png` | `amsc-icon-red.png` | Inverse black panels / dark photo areas |
 | Off-white (knock-out) | `amsc-wordmark-white.png` | `amsc-icon-white.png` | Red bars & busy photography |
 | All black (mono) | `amsc-wordmark-black.png` | `amsc-icon-black.png` | Light backgrounds, print |
 | Red + black (alt) | `amsc-wordmark-red-black.png` | `amsc-icon-red-black.png` | Light / neutral backgrounds |
@@ -40,10 +40,11 @@ Both marks are covered across every background — no gaps.
 |---|---|---|
 | AMSC Red | `#a60a08` | Primary accent — one dominant use per layout |
 | Deep Red | `#820b0b` | Hover states |
-| Black | `#000000` | Full-bleed backgrounds |
-| Surface | `#1a1a1a` | Cards, panels |
-| Off-White | `#f5f5f8` | All primary text |
-| Grey | `#d3d3d3` | Subtext, labels |
+| White | `#ffffff` | **Primary base** — full-bleed backgrounds |
+| Surface | `#f5f5f8` | Cards, panels |
+| Divider | `#d3d3d3` | Borders, separators |
+| Muted | `#555555` | Secondary text |
+| Black | `#000000` | All primary text; inverse panels |
 
 ### Fonts
 | Font | Role | Use for |
@@ -84,6 +85,10 @@ Point Claude Design at this repository. When generating any AMSC design:
 
 ---
 
+## v3.1 Update (Nov 2026)
+
+- **White is the base.** White is now the primary colour; black plays the role white used to play (text, contrast, inverse panels). Supersedes the v3.0 black-base rules.
+
 ## v3.0 Additions
 
 - **Logos tab** — logo asset slots, two-mark system, clear space rules, icon watermark spec
@@ -93,5 +98,5 @@ Point Claude Design at this repository. When generating any AMSC design:
 
 ---
 
-*AMSC Performance Design System v3.0 — June 2026*
+*AMSC Performance Design System v3.1 — November 2026*
 *Home to Elite Sports Performance*

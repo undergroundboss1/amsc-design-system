@@ -1,8 +1,8 @@
 /**
- * AMSC Performance — Design Tokens v3.0
+ * AMSC Performance — Design Tokens v3.1
  * Single source of truth for all design values.
  * Import this file into any project to apply the AMSC visual system.
- * Updated: June 2026
+ * Updated: November 2026 — white is the primary base; black carries text and contrast
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Antonio:wght@400;500;700&family=Barlow:wght@300;400;500;600;700&display=swap');
@@ -10,14 +10,21 @@
 :root {
 
   /* ── Colour Palette ─────────────────────────────────────── */
+  /* v3.1: white is the base. Black does the job white used to do
+     (text, contrast, inverse panels). Role names are semantic. */
   --amsc-red:        #a60a08;   /* Primary accent — surgical, not decorative */
   --amsc-deep-red:   #820b0b;   /* Hover states, secondary red moments */
-  --amsc-black:      #000000;   /* Full-bleed backgrounds */
-  --amsc-surface:    #1a1a1a;   /* Card surfaces, panel backgrounds */
-  --amsc-divider:    #222222;   /* Borders, separators, grid lines */
-  --amsc-muted:      #555555;   /* Tertiary labels, disabled states */
-  --amsc-grey:       #d3d3d3;   /* Subtext, labels, secondary info */
-  --amsc-off-white:  #f5f5f8;   /* All primary text on dark backgrounds */
+  --amsc-white:      #ffffff;   /* Primary base — full-bleed backgrounds */
+  --amsc-surface:    #f5f5f8;   /* Card surfaces, panel backgrounds */
+  --amsc-divider:    #d3d3d3;   /* Borders, separators, grid lines */
+  --amsc-muted:      #555555;   /* Secondary text, labels, tertiary info */
+  --amsc-ink-soft:   #1a1a1a;   /* Strong secondary text, inverse panels */
+  --amsc-black:      #000000;   /* All primary text; inverse (dark) panels */
+
+  /* Legacy aliases — v3.0 names, kept so existing imports don't break.
+     --amsc-off-white now means "surface"; --amsc-grey now means "divider". */
+  --amsc-off-white:  var(--amsc-surface);
+  --amsc-grey:       var(--amsc-divider);
 
   /* ── Typography ─────────────────────────────────────────── */
   /* Font 1 — Oswald: Authority. Commands. Structures. Establishes hierarchy. */
@@ -64,7 +71,7 @@
 
   /* ── Border ─────────────────────────────────────────────── */
   --border-thin:     0.5px solid var(--amsc-divider);
-  --border-mid:      1px solid var(--amsc-grey);
+  --border-mid:      1px solid var(--amsc-black);
   --border-accent:   2px solid var(--amsc-red);
   --border-accent-heavy: 4px solid var(--amsc-red);
 

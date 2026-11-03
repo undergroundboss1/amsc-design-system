@@ -4,19 +4,21 @@
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --red:#a60a08;--deep-red:#820b0b;
-  --black:#000;--surface:#1a1a1a;
-  --off-white:#f5f5f8;--grey:#d3d3d3;
-  --muted:#555;--divider:#222;
+  --white:#ffffff;--surface:#f5f5f8;--divider:#d3d3d3;
+  --muted:#555;--text-2:#555;--ink-soft:#1a1a1a;--ink:#000;
+  --black:#000;
 }
-.ds{background:#000;min-height:600px;color:var(--off-white);font-family:'Barlow',sans-serif;padding:0 0 48px}
+/* v3.1: white is the base; black carries text + contrast. Photo/overlay zones re-invert for legibility. */
+.on-photo{--ink:#f5f5f8;--text-2:#d3d3d3;--muted:#d3d3d3;--divider:#333}
+.ds{background:#fff;min-height:600px;color:var(--ink);font-family:'Barlow',sans-serif;padding:0 0 48px}
 .ds-header{background:var(--surface);border-bottom:2px solid var(--red);padding:20px 24px;display:flex;align-items:center;gap:16px}
-.ds-wordmark{font-family:'Oswald',sans-serif;font-weight:700;font-size:20px;letter-spacing:.06em;color:var(--off-white)}
+.ds-wordmark{font-family:'Oswald',sans-serif;font-weight:700;font-size:20px;letter-spacing:.06em;color:var(--ink)}
 .ds-wordmark span{color:var(--red)}
 .ds-sub{font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
 .ds-nav{display:flex;gap:1px;padding:0 24px;background:var(--divider);border-bottom:1px solid var(--divider);flex-wrap:wrap}
 .ds-tab{font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:12px 18px;cursor:pointer;border:none;background:transparent;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s}
-.ds-tab.on{color:var(--off-white);border-bottom-color:var(--red)}
-.ds-tab:hover:not(.on){color:var(--grey)}
+.ds-tab.on{color:var(--ink);border-bottom-color:var(--red)}
+.ds-tab:hover:not(.on){color:var(--text-2)}
 .ds-body{padding:32px 24px}
 .ds-section{display:none}.ds-section.on{display:block}
 .label{font-family:'Oswald',sans-serif;font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
@@ -38,29 +40,29 @@
 .sp-row:last-child{border-bottom:none}
 .sp-name{font-family:monospace;font-size:11px;color:var(--muted);min-width:32px}
 .sp-bar{background:var(--red);height:14px;border-radius:1px;opacity:.85}
-.sp-val{font-family:'Antonio',sans-serif;font-size:13px;color:var(--grey);min-width:40px}
+.sp-val{font-family:'Antonio',sans-serif;font-size:13px;color:var(--text-2);min-width:40px}
 .comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--divider);margin-bottom:1px}
 .comp-card{background:var(--surface);padding:20px}
 .comp-title{font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
 .eyebrow{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;background:var(--red);font-family:'Oswald',sans-serif;font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#fff;border-radius:1px}
 .eyebrow-ghost{border:0.5px solid var(--red);background:transparent;color:var(--red)}
-.metric-large{font-family:'Antonio',sans-serif;font-weight:700;font-size:48px;color:var(--off-white);line-height:1}
+.metric-large{font-family:'Antonio',sans-serif;font-weight:700;font-size:48px;color:var(--ink);line-height:1}
 .metric-label{font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:4px}
-.metric-sm{font-family:'Antonio',sans-serif;font-weight:700;font-size:24px;color:var(--off-white);line-height:1}
+.metric-sm{font-family:'Antonio',sans-serif;font-weight:700;font-size:24px;color:var(--ink);line-height:1}
 .delta{font-family:'Antonio',sans-serif;font-weight:500;font-size:16px;color:var(--red)}
 .stat-bar{display:flex;gap:1px;background:var(--divider)}
 .stat-cell{flex:1;background:var(--surface);padding:12px 10px}
-.stat-num{font-family:'Antonio',sans-serif;font-weight:700;font-size:22px;color:var(--off-white);line-height:1}
+.stat-num{font-family:'Antonio',sans-serif;font-weight:700;font-size:22px;color:var(--ink);line-height:1}
 .stat-num.accent{color:var(--red)}
 .stat-lbl{font-family:'Barlow',sans-serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:3px}
 .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--red);color:#fff;font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;border-radius:1px;transition:background .15s}
 .btn-primary:hover{background:var(--deep-red)}
-.btn-ghost{background:transparent;border:0.5px solid var(--off-white);color:var(--off-white)}
-.btn-ghost:hover{background:rgba(245,245,248,.06)}
+.btn-ghost{background:transparent;border:0.5px solid var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:rgba(0,0,0,.05)}
 .divider-red{height:2px;background:var(--red);margin:16px 0}
 .divider-thin{height:0.5px;background:var(--divider);margin:12px 0}
 .rule-red{border-left:3px solid var(--red);padding-left:14px;margin:8px 0}
-.rule-red p{font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey);line-height:1.7;font-style:italic}
+.rule-red p{font-family:'Barlow',sans-serif;font-size:13px;color:var(--text-2);line-height:1.7;font-style:italic}
 .rule-red .attr{font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
 .tpl-frame{background:var(--surface);border:0.5px solid var(--divider);position:relative}
 .tpl-photo{width:100%;background:#111;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
@@ -75,23 +77,27 @@
 .brand-rule-row:last-child{border-bottom:none}
 .brand-dot{width:6px;height:6px;border-radius:50%;background:var(--red);margin-top:5px;flex-shrink:0}
 .brand-dot.grey{background:var(--muted)}
-.brand-rule-text{font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey);line-height:1.6}
+.brand-rule-text{font-family:'Barlow',sans-serif;font-size:13px;color:var(--text-2);line-height:1.6}
 .do-dont{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--divider)}
 .do-box{background:var(--surface);padding:16px}
 .do-head{font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px}
 .do-head.do{color:#3a8c5c}.do-head.dont{color:var(--red)}
-.code-block{background:#0a0a0a;border:0.5px solid var(--divider);padding:12px 14px;font-family:monospace;font-size:11px;color:var(--grey);line-height:1.7;border-radius:1px;overflow-x:auto}
+.code-block{background:#0a0a0a;border:0.5px solid var(--divider);padding:12px 14px;font-family:monospace;font-size:11px;color:var(--text-2);line-height:1.7;border-radius:1px;overflow-x:auto}
 .kw{color:var(--red)}.val{color:#6ea8d8}
 .badge-v{display:inline-block;width:8px;height:8px;border-radius:50%}
 .logo-stage{display:flex;gap:1px;background:var(--divider);flex-wrap:wrap}
 .logo-cell{background:var(--surface);padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;flex:1;min-width:200px}
 .logo-cell.onred{background:var(--red)}
-.logo-cell.onlight{background:var(--off-white)}
+.logo-cell.onlight{background:var(--white)}
+.logo-cell.ondark{background:var(--ink)}
+.logo-cell.ondark .logo-cap{color:#d3d3d3}
+.logo-cell.ondark .logo-cap b{color:#f5f5f8}
+.logo-cell.ondark .logo-file{color:#888}
 .logo-cell img{display:block;height:auto;object-fit:contain}
 .logo-cell img.wm{width:190px;max-width:100%}
 .logo-cell img.ic{width:84px}
 .logo-cap{font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center}
-.logo-cap b{color:var(--off-white);font-weight:600}
+.logo-cap b{color:var(--ink);font-weight:600}
 .logo-cell.onred .logo-cap{color:rgba(255,255,255,.75)}
 .logo-cell.onred .logo-cap b{color:#fff}
 .logo-cell.onlight .logo-cap{color:var(--muted)}
@@ -100,11 +106,11 @@
 .logo-cell.onred .logo-file{color:rgba(255,255,255,.6)}
 .logo-cell.onlight .logo-file{color:#888}
 .budget-card{background:var(--surface);border-left:3px solid var(--red);padding:22px}
-.budget-h{font-family:'Oswald',sans-serif;font-weight:700;font-size:20px;text-transform:uppercase;color:var(--off-white);margin-bottom:6px}
-.budget-sub{font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey);line-height:1.7}
+.budget-h{font-family:'Oswald',sans-serif;font-weight:700;font-size:20px;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
+.budget-sub{font-family:'Barlow',sans-serif;font-size:13px;color:var(--text-2);line-height:1.7}
 .chip{display:inline-block;font-family:'Oswald',sans-serif;font-weight:600;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:1px;margin:3px 4px 3px 0}
 .chip.dom{background:var(--red);color:#fff}
-.chip.struct{background:transparent;border:0.5px solid var(--muted);color:var(--grey)}
+.chip.struct{background:transparent;border:0.5px solid var(--muted);color:var(--text-2)}
 .hl{background:var(--red);color:#fff;padding:0 8px}
 .logo-slot{width:100%;min-height:90px;display:flex;align-items:center;justify-content:center;border:0.5px dashed var(--muted);border-radius:2px;background:repeating-linear-gradient(45deg,transparent,transparent 8px,rgba(255,255,255,.02) 8px,rgba(255,255,255,.02) 16px)}
 .logo-slot span{font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
@@ -116,7 +122,7 @@
 <div class="ds-header">
   <div>
     <div class="ds-wordmark">AMSC <span>PERFORMANCE</span></div>
-    <div class="ds-sub">Design System · v3.0 · June 2026</div>
+    <div class="ds-sub">Design System · v3.1 · November 2026</div>
   </div>
   <div style="margin-left:auto;font-family:'Antonio',sans-serif;font-size:11px;color:var(--muted);letter-spacing:.1em">HOME OF ELITE SPORTS PERFORMANCE</div>
 </div>
@@ -147,28 +153,31 @@
   </div>
 
   <div class="group">
-    <div class="label">Neutral System</div>
+    <div class="label">Neutral System · White Base</div>
     <div class="swatch-row">
-      <div class="sw" style="background:var(--black);flex:1;border:0.5px solid var(--divider)"><span><div class="sw-label" style="color:var(--muted)">#000000</div><div class="hex" style="color:var(--divider)">Black</div></span></div>
-      <div class="sw" style="background:var(--surface);flex:1"><span><div class="sw-label" style="color:var(--muted)">#1a1a1a</div><div class="hex" style="color:var(--divider)">Near-Black</div></span></div>
-      <div class="sw" style="background:var(--divider);flex:none;width:56px"><span><div class="sw-label" style="color:var(--muted);font-size:9px">#222</div></span></div>
-      <div class="sw" style="background:var(--muted);flex:none;width:56px"><span><div class="sw-label" style="color:var(--surface);font-size:9px">#555</div></span></div>
-      <div class="sw" style="background:var(--grey);flex:1"><span><div class="sw-label" style="color:var(--surface)">#d3d3d3</div><div class="hex" style="color:var(--muted)">Light Grey</div></span></div>
-      <div class="sw" style="background:var(--off-white);flex:1"><span><div class="sw-label" style="color:var(--surface)">#f5f5f8</div><div class="hex" style="color:var(--muted)">Off-White · Primary text</div></span></div>
+      <div class="sw" style="background:var(--white);flex:1.4;border:0.5px solid var(--divider)"><span><div class="sw-label" style="color:var(--ink)">#ffffff</div><div class="hex" style="color:var(--muted)">White · Primary base</div></span></div>
+      <div class="sw" style="background:var(--surface);flex:1"><span><div class="sw-label" style="color:var(--ink)">#f5f5f8</div><div class="hex" style="color:var(--muted)">Surface</div></span></div>
+      <div class="sw" style="background:var(--divider);flex:1"><span><div class="sw-label" style="color:var(--ink)">#d3d3d3</div><div class="hex" style="color:var(--muted)">Divider</div></span></div>
+      <div class="sw" style="background:var(--muted);flex:none;width:72px"><span><div class="sw-label" style="color:#fff;font-size:9px">#555</div><div class="hex" style="color:#fff">Muted</div></span></div>
+      <div class="sw" style="background:var(--ink-soft);flex:none;width:72px"><span><div class="sw-label" style="color:#fff;font-size:9px">#1a1a1a</div></span></div>
+      <div class="sw" style="background:var(--ink);flex:1"><span><div class="sw-label" style="color:#fff">#000000</div><div class="hex" style="color:#fff">Black · Primary text</div></span></div>
     </div>
+  </div>
   </div>
 
   <div class="group">
     <div class="label">Colour Token Reference</div>
     <table class="token-table">
       <tr><td style="color:var(--muted);font-size:11px">Role</td><td style="color:var(--muted);font-size:11px">Name</td><td style="color:var(--muted);font-size:11px">Value</td><td style="color:var(--muted);font-size:11px">Usage</td></tr>
-      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--red);border-radius:50%"></div><span style="font-size:13px;color:var(--off-white)">AMSC Red</span></div></td><td class="mono">--red</td><td style="font-size:12px;color:var(--grey)">#a60a08</td><td style="font-size:11px;color:var(--muted)">The one dominant accent + structural red</td></tr>
-      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--deep-red);border-radius:50%"></div><span style="font-size:13px;color:var(--off-white)">Deep Red</span></div></td><td class="mono">--deep-red</td><td style="font-size:12px;color:var(--grey)">#820b0b</td><td style="font-size:11px;color:var(--muted)">Hover states, secondary red</td></tr>
-      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:#000;border:0.5px solid #333;border-radius:50%"></div><span style="font-size:13px;color:var(--off-white)">Black</span></div></td><td class="mono">--black</td><td style="font-size:12px;color:var(--grey)">#000000</td><td style="font-size:11px;color:var(--muted)">Full-bleed backgrounds</td></tr>
-      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--surface);border-radius:50%"></div><span style="font-size:13px;color:var(--off-white)">Near-Black</span></div></td><td class="mono">--surface</td><td style="font-size:12px;color:var(--grey)">#1a1a1a</td><td style="font-size:11px;color:var(--muted)">Card surfaces, panels</td></tr>
-      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--off-white);border-radius:50%"></div><span style="font-size:13px;color:var(--off-white)">Off-White</span></div></td><td class="mono">--off-white</td><td style="font-size:12px;color:var(--grey)">#f5f5f8</td><td style="font-size:11px;color:var(--muted)">All primary text on dark</td></tr>
-      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--grey);border-radius:50%"></div><span style="font-size:13px;color:var(--off-white)">Light Grey</span></div></td><td class="mono">--grey</td><td style="font-size:12px;color:var(--grey)">#d3d3d3</td><td style="font-size:11px;color:var(--muted)">Subtext, labels, secondary info</td></tr>
-    </table>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--red);border-radius:50%"></div><span style="font-size:13px;color:var(--ink)">AMSC Red</span></div></td><td class="mono">--red</td><td style="font-size:12px;color:var(--text-2)">#a60a08</td><td style="font-size:11px;color:var(--muted)">The one dominant accent + structural red</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--deep-red);border-radius:50%"></div><span style="font-size:13px;color:var(--ink)">Deep Red</span></div></td><td class="mono">--deep-red</td><td style="font-size:12px;color:var(--text-2)">#820b0b</td><td style="font-size:11px;color:var(--muted)">Hover states, secondary red</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--white);border:0.5px solid var(--divider);border-radius:50%"></div><span style="font-size:13px;color:var(--ink)">White</span></div></td><td class="mono">--white</td><td style="font-size:12px;color:var(--text-2)">#ffffff</td><td style="font-size:11px;color:var(--muted)">Primary base — full-bleed backgrounds</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--surface);border-radius:50%"></div><span style="font-size:13px;color:var(--ink)">Surface</span></div></td><td class="mono">--surface</td><td style="font-size:12px;color:var(--text-2)">#f5f5f8</td><td style="font-size:11px;color:var(--muted)">Card surfaces, panels</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--divider);border-radius:50%"></div><span style="font-size:13px;color:var(--ink)">Divider</span></div></td><td class="mono">--divider</td><td style="font-size:12px;color:var(--text-2)">#d3d3d3</td><td style="font-size:11px;color:var(--muted)">Borders, separators, grid lines</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--muted);border-radius:50%"></div><span style="font-size:13px;color:var(--ink)">Muted</span></div></td><td class="mono">--muted</td><td style="font-size:12px;color:var(--text-2)">#555555</td><td style="font-size:11px;color:var(--muted)">Secondary text, labels</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--ink-soft);border-radius:50%"></div><span style="font-size:13px;color:var(--ink)">Near-Black</span></div></td><td class="mono">--ink-soft</td><td style="font-size:12px;color:var(--text-2)">#1a1a1a</td><td style="font-size:11px;color:var(--muted)">Strong secondary text, inverse panels</td></tr>
+      <tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;background:var(--ink);border-radius:50%"></div><span style="font-size:13px;color:var(--ink)">Black</span></div></td><td class="mono">--ink</td><td style="font-size:12px;color:var(--text-2)">#000000</td><td style="font-size:11px;color:var(--muted)">All primary text; inverse panels</td></tr>
+      </table>
   </div>
 </div>
 <!-- TYPOGRAPHY -->
@@ -176,15 +185,15 @@
   <div class="group">
     <div class="label">Font 1 — Oswald · Authority</div>
     <div class="type-row">
-      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:52px;text-transform:uppercase;color:var(--off-white);line-height:.95">DISPLAY</div>
+      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:52px;text-transform:uppercase;color:var(--ink);line-height:.95">DISPLAY</div>
       <div class="type-meta">Oswald 700 · 48–96px · Uppercase · line-height .95 · Use: headlines, cover type</div>
     </div>
     <div class="type-row">
-      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:36px;text-transform:uppercase;color:var(--off-white)">ATHLETE SPOTLIGHT</div>
+      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:36px;text-transform:uppercase;color:var(--ink)">ATHLETE SPOTLIGHT</div>
       <div class="type-meta">Oswald 700 · H1 · 32–48px · Uppercase</div>
     </div>
     <div class="type-row">
-      <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:22px;text-transform:uppercase;color:var(--off-white)">SESSION OVERVIEW</div>
+      <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:22px;text-transform:uppercase;color:var(--ink)">SESSION OVERVIEW</div>
       <div class="type-meta">Oswald 600 · H2 · 20–28px · Uppercase</div>
     </div>
     <div class="type-row">
@@ -206,13 +215,13 @@
     </div>
     <div class="type-row">
       <div style="display:flex;align-items:baseline;gap:12px">
-        <span style="font-family:'Antonio',sans-serif;font-weight:700;font-size:28px;color:var(--off-white)">91</span>
+        <span style="font-family:'Antonio',sans-serif;font-weight:700;font-size:28px;color:var(--ink)">91</span>
         <span style="font-family:'Antonio',sans-serif;font-weight:500;font-size:16px;color:var(--red)">▲ +12%</span>
       </div>
       <div class="type-meta">Antonio 500 · Metric Small + Delta · 18–28px</div>
     </div>
     <div class="type-row">
-      <div style="font-family:'Antonio',sans-serif;font-weight:400;font-size:14px;color:var(--grey)">100m Personal Best · Kenya #7 · 2026 Season</div>
+      <div style="font-family:'Antonio',sans-serif;font-weight:400;font-size:14px;color:var(--text-2)">100m Personal Best · Kenya #7 · 2026 Season</div>
       <div class="type-meta">Antonio 400 · Data Label · 12–16px · Mixed case</div>
     </div>
   </div>
@@ -222,7 +231,7 @@
   <div class="group">
     <div class="label">Font 3 — Barlow · Support</div>
     <div class="type-row">
-      <div style="font-family:'Barlow',sans-serif;font-weight:400;font-size:15px;color:var(--grey);line-height:1.7;max-width:520px">The work started months before that time appeared on the board. Every block start, every drill, every session logged — it compounds. That 10.3 is not a moment. It is a body of work.</div>
+      <div style="font-family:'Barlow',sans-serif;font-weight:400;font-size:15px;color:var(--text-2);line-height:1.7;max-width:520px">The work started months before that time appeared on the board. Every block start, every drill, every session logged — it compounds. That 10.3 is not a moment. It is a body of work.</div>
       <div class="type-meta">Barlow 400 · Body · 12–16px · Sentence case · line-height 1.7</div>
     </div>
     <div class="type-row">
@@ -260,7 +269,7 @@
     <div class="label">Border Weights</div>
     <div style="display:flex;flex-direction:column;gap:12px">
       <div style="display:flex;align-items:center;gap:16px"><div style="width:120px;height:0;border-top:0.5px solid var(--divider)"></div><span style="font-family:monospace;font-size:11px;color:var(--muted)">0.5px · Dividers, cards, separators</span></div>
-      <div style="display:flex;align-items:center;gap:16px"><div style="width:120px;height:0;border-top:1px solid var(--grey)"></div><span style="font-family:monospace;font-size:11px;color:var(--muted)">1px · Emphasis borders</span></div>
+      <div style="display:flex;align-items:center;gap:16px"><div style="width:120px;height:0;border-top:1px solid var(--text-2)"></div><span style="font-family:monospace;font-size:11px;color:var(--muted)">1px · Emphasis borders</span></div>
       <div style="display:flex;align-items:center;gap:16px"><div style="width:120px;height:0;border-top:2px solid var(--red)"></div><span style="font-family:monospace;font-size:11px;color:var(--muted)">2px red · Accent bar (max deliberate red use)</span></div>
       <div style="display:flex;align-items:center;gap:16px"><div style="width:120px;height:0;border-top:4px solid var(--red)"></div><span style="font-family:monospace;font-size:11px;color:var(--muted)">4px red · Cover page / hero bar max</span></div>
     </div>
@@ -348,7 +357,7 @@
     <div class="label">Template 1 — The Result Post · Hybrid Layout</div>
     <div style="max-width:300px">
       <div class="tpl-frame" style="aspect-ratio:1">
-        <div class="tpl-photo" style="height:72%">
+        <div class="tpl-photo on-photo" style="height:72%">
           <div class="tpl-photo-inner">
             <div class="photo-label">HERO PHOTO<br>Athlete · Competitive environment<br>High contrast · Dark vignette</div>
           </div>
@@ -356,8 +365,8 @@
           <div style="position:absolute;top:12px;left:12px"><span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:10px;color:rgba(245,245,248,.4);letter-spacing:.06em">AMSC</span></div>
           <div style="position:absolute;bottom:14px;left:14px;right:14px">
             <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:4px">Basketball · BAL Africa</div>
-            <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:26px;text-transform:uppercase;color:var(--off-white);line-height:.95">DERRICK<br>OGECHI</div>
-            <div style="font-family:'Barlow',sans-serif;font-size:10px;color:var(--grey);margin-top:4px">Nairobi City Thunder · Captain</div>
+            <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:26px;text-transform:uppercase;color:var(--ink);line-height:.95">DERRICK<br>OGECHI</div>
+            <div style="font-family:'Barlow',sans-serif;font-size:10px;color:var(--text-2);margin-top:4px">Nairobi City Thunder · Captain</div>
           </div>
         </div>
         <div class="stat-bar" style="height:28%">
@@ -376,7 +385,7 @@
     <div class="label">Template 2 — The Process Post · Split Layout</div>
     <div style="max-width:380px">
       <div class="grid2" style="border:0.5px solid var(--divider)">
-        <div style="background:#111;min-height:140px;display:flex;align-items:center;justify-content:center;padding:16px">
+        <div class="on-photo" style="background:#111;min-height:140px;display:flex;align-items:center;justify-content:center;padding:16px">
           <div class="photo-label">DOCUMENTARY PHOTO<br>Training environment<br>Real session · Unposed</div>
         </div>
         <div class="grid-cell" style="background:var(--surface)">
@@ -384,7 +393,7 @@
           <div class="metric-large" style="font-size:36px">91</div>
           <div class="metric-label">Acceleration Score</div>
           <div class="divider-thin" style="margin:10px 0"></div>
-          <div style="font-family:'Barlow',sans-serif;font-size:10px;color:var(--grey);line-height:1.6">Session 14 · Phase 3 loading. Consistent output across all five attempts.</div>
+          <div style="font-family:'Barlow',sans-serif;font-size:10px;color:var(--text-2);line-height:1.6">Session 14 · Phase 3 loading. Consistent output across all five attempts.</div>
           <div style="margin-top:10px"><span class="metric-sm" style="font-size:16px;color:var(--red)">▲ +12%</span><div class="metric-label" style="font-size:8px">vs Baseline</div></div>
         </div>
       </div>
@@ -413,9 +422,9 @@
 <div id="logos" class="ds-section">
   <div class="group">
     <div class="label">Asset Library — Live Files</div>
-    <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px">The real logo files live in the <span style="font-family:monospace;color:var(--grey)">/logos</span> folder of this repo as transparent PNGs (2084×2084). Each is shown on its intended background. Filenames follow <span style="font-family:monospace;color:var(--grey)">amsc-[mark]-[colourway].png</span>.</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px">The real logo files live in the <span style="font-family:monospace;color:var(--text-2)">/logos</span> folder of this repo as transparent PNGs (2084×2084). Each is shown on its intended background. Filenames follow <span style="font-family:monospace;color:var(--text-2)">amsc-[mark]-[colourway].png</span>.</div>
 
-    <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:8px">Primary · Black + Red · Light & Neutral Backgrounds</div>
+    <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:8px">Primary · Black + Red · White Base · Default Backgrounds</div>
     <div class="logo-stage">
       <div class="logo-cell onlight">
         <img class="wm" src="logos/amsc-wordmark-black-red.png" alt="AMSC Performance wordmark, black with red accent">
@@ -427,19 +436,19 @@
       </div>
     </div>
 
-    <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin:18px 0 8px">On Dark · All Red · Black & Photo Backgrounds</div>
+    <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin:18px 0 8px">On Inverse Black Panels · All Red · Dark Photo Areas</div>
     <div class="logo-stage">
-      <div class="logo-cell">
+      <div class="logo-cell ondark">
         <img class="wm" src="logos/amsc-wordmark-red.png" alt="AMSC Performance wordmark, all red">
-        <div class="logo-cap"><b>Wordmark · On Dark</b><span class="logo-file">amsc-wordmark-red.png</span></div>
+        <div class="logo-cap"><b>Wordmark · On Inverse</b><span class="logo-file">amsc-wordmark-red.png</span></div>
       </div>
-      <div class="logo-cell">
+      <div class="logo-cell ondark">
         <img class="ic" src="logos/amsc-icon-red.png" alt="AMSC C-stopwatch icon, all red">
-        <div class="logo-cap"><b>Icon · On Dark</b><span class="logo-file">amsc-icon-red.png</span></div>
+        <div class="logo-cap"><b>Icon · On Inverse</b><span class="logo-file">amsc-icon-red.png</span></div>
       </div>
     </div>
 
-    <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--off-white);margin:18px 0 8px">On Red / Busy Photo · Off-White Knock-Out</div>
+    <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);margin:18px 0 8px">On Red / Busy Photo · Off-White Knock-Out</div>
     <div class="logo-stage">
       <div class="logo-cell onred">
         <img class="wm" src="logos/amsc-wordmark-white.png" alt="AMSC Performance wordmark, off-white knock-out">
@@ -475,17 +484,17 @@
       </div>
     </div>
 
-    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);line-height:1.6;margin-top:14px;padding:12px 14px;background:var(--surface);border-left:3px solid var(--red)">Full matrix, both marks: <b style="color:var(--off-white)">red</b> for dark/photo backgrounds · <b style="color:var(--off-white)">off-white</b> for red bars &amp; busy photography · <b style="color:var(--off-white)">black</b> / <b style="color:var(--off-white)">black+red</b> for light backgrounds. All transparent PNGs at 2084×2084.</div>
+    <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);line-height:1.6;margin-top:14px;padding:12px 14px;background:var(--surface);border-left:3px solid var(--red)">Full matrix, both marks: <b style="color:var(--ink)">black / black+red</b> for white backgrounds (default) · <b style="color:var(--ink)">red</b> for inverse black panels &amp; dark photo areas · <b style="color:var(--ink)">off-white</b> for red bars &amp; busy photography. All transparent PNGs at 2084×2084.</div>
   </div>
 
   <hr class="rule">
 
   <div class="group">
     <div class="label">Logo Usage</div>
-    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text"><strong style="color:var(--off-white)">Two marks only.</strong> The full wordmark (AMSC PERFORMANCE) is primary. The C-stopwatch icon is the standalone symbol — use it as a watermark, app/profile mark, or where the full wordmark won't fit.</div></div>
-    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text"><strong style="color:var(--off-white)">Colour is locked to two versions.</strong> Red (#a60a08) on dark backgrounds. Off-white (#f5f5f8) on red bars or busy photography. Never any other colour. Never a gradient.</div></div>
-    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text"><strong style="color:var(--off-white)">Clear space.</strong> Keep clear space around the wordmark equal to the height of the "C" icon. Nothing — text, photo edges, other logos — intrudes into that zone.</div></div>
-    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text"><strong style="color:var(--off-white)">Minimum size.</strong> Wordmark never below 90px wide on screen. Icon never below 24px. Below that, legibility breaks.</div></div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text"><strong style="color:var(--ink)">Two marks only.</strong> The full wordmark (AMSC PERFORMANCE) is primary. The C-stopwatch icon is the standalone symbol — use it as a watermark, app/profile mark, or where the full wordmark won't fit.</div></div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text"><strong style="color:var(--ink)">Colour follows the background.</strong> Black + red on white (the default base). Red (#a60a08) on inverse black panels and dark photo areas. Off-white (#f5f5f8) on red bars or busy photography. Never any other colour. Never a gradient.</div></div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text"><strong style="color:var(--ink)">Clear space.</strong> Keep clear space around the wordmark equal to the height of the "C" icon. Nothing — text, photo edges, other logos — intrudes into that zone.</div></div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text"><strong style="color:var(--ink)">Minimum size.</strong> Wordmark never below 90px wide on screen. Icon never below 24px. Below that, legibility breaks.</div></div>
     <div class="brand-rule-row"><div class="brand-dot grey"></div><div class="brand-rule-text">Never stretch, rotate, recolour outside the two approved versions, add effects (shadow/glow/bevel), or place the red mark on a red or mid-tone background where contrast fails.</div></div>
     <div class="brand-rule-row"><div class="brand-dot grey"></div><div class="brand-rule-text">The logo is always the quietest element in athlete content — present, never competing. See the Athlete Protagonist rule.</div></div>
   </div>
@@ -495,12 +504,12 @@
   <div class="group">
     <div class="label">Icon as Watermark</div>
     <div style="background:var(--surface);padding:20px;display:flex;align-items:center;gap:24px;flex-wrap:wrap">
-      <div style="position:relative;width:200px;height:120px;background:#000;border:0.5px solid var(--divider);overflow:hidden;flex-shrink:0">
+      <div style="position:relative;width:200px;height:120px;background:#fff;border:0.5px solid var(--divider);overflow:hidden;flex-shrink:0">
         <img src="logos/amsc-icon-red.png" alt="" style="position:absolute;right:-26px;top:50%;transform:translateY(-50%);width:130px;height:auto;opacity:0.08">
         <div style="position:absolute;left:14px;top:14px;font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.18em;color:var(--red)">THE SOLUTION</div>
-        <div style="position:absolute;left:14px;top:32px;font-family:'Oswald',sans-serif;font-weight:700;font-size:15px;color:var(--off-white);line-height:1.05">BUILT AROUND<br>YOUR SQUAD.</div>
+        <div style="position:absolute;left:14px;top:32px;font-family:'Oswald',sans-serif;font-weight:700;font-size:15px;color:var(--ink);line-height:1.05">BUILT AROUND<br>YOUR SQUAD.</div>
       </div>
-      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);line-height:1.7;max-width:340px">The C-stopwatch icon may sit large and faded in the background of brand frames — opacity 4–8%, bleeding off an edge, never overlapping the focal text. One watermark per layout. It adds institutional weight without spending the red budget. <span style="color:var(--grey)">(Shown: <span style="font-family:monospace">amsc-icon-red.png</span> at 8% opacity.)</span></div>
+      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);line-height:1.7;max-width:340px">The C-stopwatch icon may sit large and faded in the background of brand frames — opacity 4–8%, bleeding off an edge, never overlapping the focal text. One watermark per layout. It adds institutional weight without spending the red budget. <span style="color:var(--text-2)">(Shown: <span style="font-family:monospace">amsc-icon-red.png</span> at 8% opacity.)</span></div>
     </div>
   </div>
 </div>
@@ -527,7 +536,7 @@
         <span class="chip struct">Quote left-borders</span>
         <span class="chip struct">Deltas ▲ +12%</span>
       </div>
-      <div style="margin-top:18px;padding-top:14px;border-top:0.5px solid var(--divider);font-family:'Barlow',sans-serif;font-size:12px;color:var(--grey);line-height:1.7"><strong style="color:var(--off-white)">The squint test:</strong> if you squint and more than one red element fights to be "the point," you've overspent. Pull one back to structural, or remove it.</div>
+      <div style="margin-top:18px;padding-top:14px;border-top:0.5px solid var(--divider);font-family:'Barlow',sans-serif;font-size:12px;color:var(--text-2);line-height:1.7"><strong style="color:var(--ink)">The squint test:</strong> if you squint and more than one red element fights to be "the point," you've overspent. Pull one back to structural, or remove it.</div>
     </div>
   </div>
 
@@ -536,8 +545,8 @@
   <div class="group">
     <div class="label">The Core Rule</div>
     <div style="background:var(--surface);padding:20px;border-left:3px solid var(--red)">
-      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;text-transform:uppercase;color:var(--off-white);margin-bottom:8px">THE ATHLETE IS ALWAYS THE PROTAGONIST</div>
-      <div style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey);line-height:1.7">AMSC is the coach in the corner. Every design decision must honour this. The athlete's name is always larger than the AMSC logo. The achievement is always the headline. AMSC's role is always framing, never competing.</div>
+      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;text-transform:uppercase;color:var(--ink);margin-bottom:8px">THE ATHLETE IS ALWAYS THE PROTAGONIST</div>
+      <div style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--text-2);line-height:1.7">AMSC is the coach in the corner. Every design decision must honour this. The athlete's name is always larger than the AMSC logo. The achievement is always the headline. AMSC's role is always framing, never competing.</div>
     </div>
   </div>
 
@@ -547,25 +556,25 @@
     <div class="label">Signature Elements — The AMSC Look</div>
 
     <div style="background:var(--surface);padding:18px;margin-bottom:1px">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px"><span style="font-family:'Antonio',sans-serif;font-weight:700;font-size:15px;color:var(--red)">01</span><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;text-transform:uppercase;color:var(--off-white)">Red Horizontal Bars as Structure</span></div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px"><span style="font-family:'Antonio',sans-serif;font-weight:700;font-size:15px;color:var(--red)">01</span><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;text-transform:uppercase;color:var(--ink)">Red Horizontal Bars as Structure</span></div>
       <div class="divider-red" style="margin:10px 0"></div>
-      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--grey);line-height:1.7">Narrow, contained, full-width red bars are approved as structural dividers and label-holders — the tagline strip, eyebrow bars, section separators. Height stays limited (a strip, never a panel). This is structural red: it organises, it doesn't compete. <strong style="color:var(--off-white)">Red as a large background <em>surface</em> is still forbidden.</strong></div>
+      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--text-2);line-height:1.7">Narrow, contained, full-width red bars are approved as structural dividers and label-holders — the tagline strip, eyebrow bars, section separators. Height stays limited (a strip, never a panel). This is structural red: it organises, it doesn't compete. <strong style="color:var(--ink)">Red as a large background <em>surface</em> is still forbidden.</strong></div>
     </div>
 
     <div style="background:var(--surface);padding:18px;margin-bottom:1px">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><span style="font-family:'Antonio',sans-serif;font-weight:700;font-size:15px;color:var(--red)">02</span><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;text-transform:uppercase;color:var(--off-white)">Red-Backed Headline Highlight</span></div>
-      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;text-transform:uppercase;color:var(--off-white);line-height:1.15;margin-bottom:12px">BUILT AROUND <span class="hl">YOUR SQUAD.</span></div>
-      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--grey);line-height:1.7">The strongest device in the system. One key phrase sits on a solid red bar inside the headline. This <em>is</em> the dominant red moment — it expresses the budget, it doesn't break it. One highlight per layout, on the single most important phrase.</div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><span style="font-family:'Antonio',sans-serif;font-weight:700;font-size:15px;color:var(--red)">02</span><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;text-transform:uppercase;color:var(--ink)">Red-Backed Headline Highlight</span></div>
+      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;text-transform:uppercase;color:var(--ink);line-height:1.15;margin-bottom:12px">BUILT AROUND <span class="hl">YOUR SQUAD.</span></div>
+      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--text-2);line-height:1.7">The strongest device in the system. One key phrase sits on a solid red bar inside the headline. This <em>is</em> the dominant red moment — it expresses the budget, it doesn't break it. One highlight per layout, on the single most important phrase.</div>
     </div>
 
     <div style="background:var(--surface);padding:18px;margin-bottom:1px">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px"><span style="font-family:'Antonio',sans-serif;font-weight:700;font-size:15px;color:var(--red)">03</span><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;text-transform:uppercase;color:var(--off-white)">Stopwatch Watermark</span></div>
-      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--grey);line-height:1.7">The C-stopwatch icon, large and faded (4–8% opacity), bleeding off an edge of a brand frame. Institutional weight without competing for attention. One per layout, behind the content, never overlapping focal text. Full spec under Logos → Icon as Watermark.</div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px"><span style="font-family:'Antonio',sans-serif;font-weight:700;font-size:15px;color:var(--red)">03</span><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;text-transform:uppercase;color:var(--ink)">Stopwatch Watermark</span></div>
+      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--text-2);line-height:1.7">The C-stopwatch icon, large and faded (4–8% opacity), bleeding off an edge of a brand frame. Institutional weight without competing for attention. One per layout, behind the content, never overlapping focal text. Full spec under Logos → Icon as Watermark.</div>
     </div>
 
     <div style="background:var(--surface);padding:18px">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px"><span style="font-family:'Antonio',sans-serif;font-weight:700;font-size:15px;color:var(--red)">04</span><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;text-transform:uppercase;color:var(--off-white)">Founder Portrait on the Close</span></div>
-      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--grey);line-height:1.7">Arnold's portrait is permitted on <strong style="color:var(--off-white)">closing and contact frames only</strong> — the human signature behind the institution. Never on content, proof, or methodology slides. It signals there is a real person behind the system at the moment of the ask.</div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px"><span style="font-family:'Antonio',sans-serif;font-weight:700;font-size:15px;color:var(--red)">04</span><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;text-transform:uppercase;color:var(--ink)">Founder Portrait on the Close</span></div>
+      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--text-2);line-height:1.7">Arnold's portrait is permitted on <strong style="color:var(--ink)">closing and contact frames only</strong> — the human signature behind the institution. Never on content, proof, or methodology slides. It signals there is a real person behind the system at the moment of the ask.</div>
     </div>
   </div>
 
@@ -574,8 +583,8 @@
   <div class="group">
     <div class="label">Optional Treatment — Use With Judgement</div>
     <div style="background:var(--surface);padding:18px;border-top:3px solid var(--red)">
-      <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;text-transform:uppercase;color:var(--off-white);margin-bottom:8px">Red Card Top-Border</div>
-      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--grey);line-height:1.7">A red top-border on cards (as on this card) is <strong style="color:var(--off-white)">optional, not default</strong>. Use it when a card grid is the hero element of the layout. Skip it when the dominant red is needed elsewhere — a grid of cards with red top-borders plus a red headline highlight overspends the budget.</div>
+      <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;text-transform:uppercase;color:var(--ink);margin-bottom:8px">Red Card Top-Border</div>
+      <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--text-2);line-height:1.7">A red top-border on cards (as on this card) is <strong style="color:var(--ink)">optional, not default</strong>. Use it when a card grid is the hero element of the layout. Skip it when the dominant red is needed elsewhere — a grid of cards with red top-borders plus a red headline highlight overspends the budget.</div>
     </div>
   </div>
 
@@ -597,7 +606,7 @@
   <div class="group">
     <div class="label">Red Never Appears On</div>
     <div class="brand-rule-row"><div class="brand-dot grey"></div><div class="brand-rule-text">Large background <em>surfaces</em> — red is an accent and a bar, never a panel fill</div></div>
-    <div class="brand-rule-row"><div class="brand-dot grey"></div><div class="brand-rule-text">Body text — body is always off-white or grey on dark</div></div>
+    <div class="brand-rule-row"><div class="brand-dot grey"></div><div class="brand-rule-text">Body text — body is always black or dark grey (#555) on white</div></div>
     <div class="brand-rule-row"><div class="brand-dot grey"></div><div class="brand-rule-text">Decorative elements with no functional purpose</div></div>
     <div class="brand-rule-row"><div class="brand-dot grey"></div><div class="brand-rule-text">Two dominant moments on one layout — see The Red Budget</div></div>
   </div>
@@ -609,7 +618,7 @@
     <div class="do-dont" style="border:0.5px solid var(--divider)">
       <div class="do-box">
         <div class="do-head do">Correct</div>
-        <div style="font-family:'Antonio',sans-serif;font-weight:700;font-size:28px;color:var(--off-white)">10.3</div>
+        <div style="font-family:'Antonio',sans-serif;font-weight:700;font-size:28px;color:var(--ink)">10.3</div>
         <div style="font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">100m PB</div>
         <div style="margin-top:12px;font-family:'Antonio',sans-serif;font-size:16px;color:var(--red)">▲ +12%</div>
         <div style="font-family:'Barlow',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">Acceleration</div>
@@ -630,11 +639,11 @@
   <div class="group">
     <div class="label">Authority Sequence in Athlete Content</div>
     <div style="display:flex;flex-direction:column;gap:1px;max-width:360px">
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface)"><span style="font-family:'Antonio',sans-serif;font-size:16px;color:var(--red)">01</span><span style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--off-white)">The photo — athlete's presence</span></div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface)"><span style="font-family:'Antonio',sans-serif;font-size:16px;color:var(--grey)">02</span><span style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--off-white)">The quote — athlete's voice</span></div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface)"><span style="font-family:'Antonio',sans-serif;font-size:16px;color:var(--grey)">03</span><span style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--off-white)">The data — athlete's proof</span></div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface)"><span style="font-family:'Antonio',sans-serif;font-size:16px;color:var(--grey)">04</span><span style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--off-white)">The name — athlete's identity</span></div>
-      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:#111;border-top:0.5px solid var(--divider)"><span style="font-family:'Antonio',sans-serif;font-size:12px;color:var(--muted)">—</span><span style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted)">AMSC logo · quiet · present · always last</span></div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface)"><span style="font-family:'Antonio',sans-serif;font-size:16px;color:var(--red)">01</span><span style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--ink)">The photo — athlete's presence</span></div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface)"><span style="font-family:'Antonio',sans-serif;font-size:16px;color:var(--text-2)">02</span><span style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--ink)">The quote — athlete's voice</span></div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface)"><span style="font-family:'Antonio',sans-serif;font-size:16px;color:var(--text-2)">03</span><span style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--ink)">The data — athlete's proof</span></div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface)"><span style="font-family:'Antonio',sans-serif;font-size:16px;color:var(--text-2)">04</span><span style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--ink)">The name — athlete's identity</span></div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:var(--surface);border-top:0.5px solid var(--divider)"><span style="font-family:'Antonio',sans-serif;font-size:12px;color:var(--muted)">—</span><span style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted)">AMSC logo · quiet · present · always last</span></div>
     </div>
   </div>
 </div>
@@ -645,16 +654,16 @@
     <div class="label">Photo Treatment Modes</div>
     <div class="grid3" style="border:0.5px solid var(--divider)">
       <div class="grid-cell">
-        <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;text-transform:uppercase;color:var(--off-white);margin-bottom:8px">Mode 1 · Hero</div>
-        <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--grey);line-height:1.7">Full-bleed athlete portrait. Subject sharp and dominant. Dark vignette on lower third for text legibility.</div>
+        <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;text-transform:uppercase;color:var(--ink);margin-bottom:8px">Mode 1 · Hero</div>
+        <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--text-2);line-height:1.7">Full-bleed athlete portrait. Subject sharp and dominant. Dark vignette on lower third for text legibility.</div>
       </div>
       <div class="grid-cell">
-        <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;text-transform:uppercase;color:var(--off-white);margin-bottom:8px">Mode 2 · Atmosphere</div>
-        <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--grey);line-height:1.7">Athlete partially abstracted. Dark overlay. Large negative space for typography to breathe.</div>
+        <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;text-transform:uppercase;color:var(--ink);margin-bottom:8px">Mode 2 · Atmosphere</div>
+        <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--text-2);line-height:1.7">Athlete partially abstracted. Dark overlay. Large negative space for typography to breathe.</div>
       </div>
       <div class="grid-cell">
-        <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;text-transform:uppercase;color:var(--off-white);margin-bottom:8px">Mode 3 · Documentary</div>
-        <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--grey);line-height:1.7">Raw training aesthetic. Unposed. Authentic moment. Minimal treatment.</div>
+        <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;text-transform:uppercase;color:var(--ink);margin-bottom:8px">Mode 3 · Documentary</div>
+        <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--text-2);line-height:1.7">Raw training aesthetic. Unposed. Authentic moment. Minimal treatment.</div>
       </div>
     </div>
     <div style="font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted);margin-top:10px">Every photo template must accept all three modes. Overlay and text zones must hold regardless of treatment.</div>
@@ -665,9 +674,9 @@
   <div class="group">
     <div class="label">Signature Grade — Selective Desaturation</div>
     <div style="background:var(--surface);padding:20px;border-left:3px solid var(--red)">
-      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;color:var(--off-white);margin-bottom:8px">HERO IN COLOUR. EVERYONE ELSE FADES BACK.</div>
-      <div style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--grey);line-height:1.7">The AMSC cover grade: the hero athlete stays in full colour while surrounding players are desaturated to near-black-and-white. It isolates the protagonist and carries the protagonist rule into the photography itself. Use on covers and athlete spotlights where one figure must dominate a busy frame.</div>
-      <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);line-height:1.7;margin-top:12px"><strong style="color:var(--grey)">This is a photo-edit technique, not a layout rule</strong> — it is applied in the grade before the image enters a template. Do not attempt to simulate it with overlays in layout. When the hero cannot be cleanly isolated, fall back to Mode 1 Hero with a dark vignette instead.</div>
+      <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;color:var(--ink);margin-bottom:8px">HERO IN COLOUR. EVERYONE ELSE FADES BACK.</div>
+      <div style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--text-2);line-height:1.7">The AMSC cover grade: the hero athlete stays in full colour while surrounding players are desaturated to near-black-and-white. It isolates the protagonist and carries the protagonist rule into the photography itself. Use on covers and athlete spotlights where one figure must dominate a busy frame.</div>
+      <div style="font-family:'Barlow',sans-serif;font-size:11px;color:var(--muted);line-height:1.7;margin-top:12px"><strong style="color:var(--text-2)">This is a photo-edit technique, not a layout rule</strong> — it is applied in the grade before the image enters a template. Do not attempt to simulate it with overlays in layout. When the hero cannot be cleanly isolated, fall back to Mode 1 Hero with a dark vignette instead.</div>
     </div>
   </div>
 
@@ -676,9 +685,9 @@
   <div class="group">
     <div class="label">Photography Principles</div>
     <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">Real athletes, real moments. No stock imagery in proof or athlete content.</div></div>
-    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">Dark always wins — favour low-key, high-contrast images that sit on black.</div></div>
+    <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">Favour low-key, high-contrast images — they hold up on a white layout and under a dark vignette.</div></div>
     <div class="brand-rule-row"><div class="brand-dot"></div><div class="brand-rule-text">Leave negative space for typography — shoot and crop with the text zone in mind.</div></div>
-    <div class="brand-rule-row"><div class="brand-dot grey"></div><div class="brand-rule-text">Avoid bright, evenly-lit, light-background images — they fight the system.</div></div>
+    <div class="brand-rule-row"><div class="brand-dot grey"></div><div class="brand-rule-text">Avoid flat, evenly-lit, washed-out images — they have no contrast and no protagonist.</div></div>
   </div>
 </div>
 

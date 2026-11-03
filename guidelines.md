@@ -34,12 +34,16 @@ Every design decision must honour this:
 |---|---|---|
 | `--amsc-red` | `#a60a08` | Primary accent — see Red Budget below |
 | `--amsc-deep-red` | `#820b0b` | Hover states, secondary red |
-| `--amsc-black` | `#000000` | Full-bleed backgrounds |
-| `--amsc-surface` | `#1a1a1a` | Card surfaces, panels |
-| `--amsc-divider` | `#222222` | Borders, separators, grid lines |
-| `--amsc-muted` | `#555555` | Tertiary labels, disabled states |
-| `--amsc-grey` | `#d3d3d3` | Subtext, labels, secondary info |
-| `--amsc-off-white` | `#f5f5f8` | All primary text on dark |
+| `--amsc-white` | `#ffffff` | **Primary base** — full-bleed backgrounds |
+| `--amsc-surface` | `#f5f5f8` | Card surfaces, panels |
+| `--amsc-divider` | `#d3d3d3` | Borders, separators, grid lines |
+| `--amsc-muted` | `#555555` | Secondary text, labels, tertiary info |
+| `--amsc-ink-soft` | `#1a1a1a` | Strong secondary text, inverse panels |
+| `--amsc-black` | `#000000` | All primary text; inverse (dark) panels |
+
+> **v3.1 (Nov 2026) — White is the base.** White is now the primary colour of every AMSC layout. Black plays the role white used to play: all primary text, rules that need contrast, and inverse panels. This supersedes the v3.0 black-base rules. Legacy tokens `--amsc-off-white` and `--amsc-grey` remain as aliases of surface and divider.
+
+**Contrast pairs (use these):** black on white (primary), black on surface, white on black (inverse panels), white on red. Secondary text is `#555555` on white. Never put `#d3d3d3` text on white — it fails contrast.
 
 **No other colours are permitted.** No gold, green, blue, or partner brand colours in AMSC-primary layouts.
 
@@ -79,10 +83,10 @@ All marks live in the [`/logos`](logos) folder as transparent PNGs (2084×2084).
 
 | File | Mark | Colourway | Use on |
 |---|---|---|---|
-| `logos/amsc-wordmark-black-red.png` | Wordmark | Black + red accent | **Primary** — light / neutral backgrounds |
-| `logos/amsc-icon-black-red.png` | Icon | Black + red accent | **Primary / favicon** — light / neutral |
-| `logos/amsc-wordmark-red.png` | Wordmark | All red | Dark / black / photo backgrounds |
-| `logos/amsc-icon-red.png` | Icon | All red | Dark / black / photo backgrounds |
+| `logos/amsc-wordmark-black-red.png` | Wordmark | Black + red accent | **Primary** — white and light backgrounds (the default) |
+| `logos/amsc-icon-black-red.png` | Icon | Black + red accent | **Primary / favicon** — white and light backgrounds |
+| `logos/amsc-wordmark-red.png` | Wordmark | All red | Inverse (black) panels and dark photo backgrounds |
+| `logos/amsc-icon-red.png` | Icon | All red | Inverse (black) panels and dark photo backgrounds |
 | `logos/amsc-wordmark-white.png` | Wordmark | Off-white knock-out | Red bars & busy photography |
 | `logos/amsc-icon-white.png` | Icon | Off-white knock-out | Red bars & busy photography |
 | `logos/amsc-wordmark-black.png` | Wordmark | All black | Mono — light backgrounds, print |
@@ -90,10 +94,10 @@ All marks live in the [`/logos`](logos) folder as transparent PNGs (2084×2084).
 | `logos/amsc-wordmark-red-black.png` | Wordmark | Red + black accent | Alternate — light / neutral |
 | `logos/amsc-icon-red-black.png` | Icon | Red + black accent | Alternate — light / neutral |
 
-Both marks are covered across every background: red for dark/photo, off-white for red bars and busy photography, black/black+red for light.
+Both marks are covered across every background: black+red on white (the default), all-red or off-white on dark and inverse panels, off-white on red bars and busy photography.
 
 ### Colour Rule
-On dark backgrounds use the all-red mark. On red bars or busy mid-tone photography use the off-white knock-out (`#f5f5f8`). On light/neutral backgrounds use the black+red primary (or all-black mono). Never any other colour. Never a gradient.
+On white and light backgrounds use the black+red primary (or all-black mono) — this is the default. On inverse black panels and dark photo areas use the all-red mark. On red bars or busy mid-tone photography use the off-white knock-out (`#f5f5f8`). Never any other colour. Never a gradient.
 
 ### Clear Space
 Keep clear space around the wordmark equal to the height of the "C" icon. Nothing — text, photo edges, other logos — intrudes into that zone.
@@ -104,7 +108,7 @@ Wordmark never below 90px wide on screen. Social: logo width ≈ 15–20% of can
 ### Logo Placement
 - Social: top-left or top-right corner
 - Documents and reports: bottom-left or bottom-right
-- Always in its own clean zone — never over a busy photo area without a dark gradient or backing panel
+- Always in its own clean zone — never over a busy photo area without a gradient scrim or backing panel
 
 ### Never
 Never stretch, rotate, recolour outside the two approved versions, add effects (shadow/glow/bevel), or place the red mark on a red or mid-tone background where contrast fails.
@@ -249,7 +253,7 @@ Arnold's portrait is permitted on closing and contact frames only — the human 
 ### Template 4 — The Data Story Post
 - Goal: before/after transformation
 - Photo: optional — data is the visual
-- Layout: Dense — dark background, structured comparison grid
+- Layout: Dense — white background, structured comparison grid
 - Red on: the → delta arrow between before and after numbers
 
 ---
@@ -264,6 +268,8 @@ The photo sets tone. Type tells the story. Dark overlay 40–60% opacity. Domina
 
 ### Mode 3 — Documentary
 Raw training footage. Real over polished. Minimal treatment — colour grade only. Data panel alongside. Use for process posts and behind-the-scenes.
+
+> **Photo overlays are the one place dark stays.** Vignettes and overlays on photography are an image-treatment technique, not a layout colour. Text sitting directly on a darkened photo area uses off-white (`#f5f5f8`) for legibility; everywhere else, text is black on white.
 
 ### Signature Grade — Selective Desaturation
 The AMSC cover grade: the hero athlete stays in full colour while surrounding players are desaturated to near-black-and-white. Isolates the protagonist and carries the protagonist rule into the photography itself. Use on covers and athlete spotlights where one figure must dominate a busy frame.
@@ -331,9 +337,9 @@ This is what the work produces.
 
 ### Stat Bar
 - 3 cells maximum
-- Background: `#222` gap between cells
-- Cell background: `#1a1a1a`
-- One cell gets the red accent number — all others off-white
+- Background: `#d3d3d3` gap between cells
+- Cell background: `#f5f5f8` (or `#ffffff` with 0.5px dividers)
+- One cell gets the red accent number — all others black
 
 ### Quote Block
 - 3px red left border
@@ -343,7 +349,7 @@ This is what the work produces.
 ### Buttons
 - Font: Oswald 600, uppercase, 0.14em tracking
 - Primary: red fill (`#a60a08`), hover deep red (`#820b0b`)
-- Ghost: transparent, 0.5px off-white border
+- Ghost: transparent, 0.5px black border, black text
 - Border radius: 1px
 - One CTA per layout maximum
 
@@ -361,10 +367,10 @@ This is what the work produces.
 
 ## Brand Assets
 
-- Logo on dark: `logos/amsc-wordmark-red.png` (all red)
+- Logo on white / light (default): `logos/amsc-wordmark-black-red.png` (black + red, primary) or `logos/amsc-wordmark-black.png` (mono)
+- Logo on inverse black panel / dark photo: `logos/amsc-wordmark-red.png` (all red)
 - Logo on red bar / busy photo: `logos/amsc-wordmark-white.png` (off-white knock-out)
-- Logo on light: `logos/amsc-wordmark-black-red.png` (black + red, primary) or `logos/amsc-wordmark-black.png` (mono)
-- Icon / favicon: `logos/amsc-icon-black-red.png` (light) · `logos/amsc-icon-red.png` (dark) · `logos/amsc-icon-white.png` (on red/photo)
+- Icon / favicon: `logos/amsc-icon-black-red.png` (white/light, default) · `logos/amsc-icon-red.png` (inverse/dark) · `logos/amsc-icon-white.png` (on red/photo)
 - Full asset library: [`/logos`](logos) — see File Reference under Logos
 - Instagram: @amscperformance
 - Location: The Courtyard, Vanga Rd, Nairobi, Kenya
@@ -377,9 +383,9 @@ This is what the work produces.
 Use these to sense-check quality:
 - **Altis** — authority through proof, academic minimalism
 - **EXOS** — high-performance system feel, everything intentional
-- **Whoop** — data integrated with real life, dark precision, metrics feel human
+- **Whoop** — data integrated with real life, precision, metrics feel human
 - **Momentous** — best-in-class web editorial, sparse, typographic, confident
 
 ---
 
-*AMSC Performance Design System v3.0 — June 2026*
+*AMSC Performance Design System v3.1 — November 2026 (white-base update)*

@@ -89,7 +89,7 @@ Use these brands as calibration references — not to copy, but to sense-check q
 - **Altis** — authority through proof, academic minimalism, credentials as design
 - **EXOS** — high-performance system feel, everything looks intentional
 - **Volt Athletics** — software-edge, data-forward, structured
-- **Whoop** — data integrated with real life, dark precision, metrics feel human
+- **Whoop** — data integrated with real life, precision, metrics feel human
 - **Momentous** — best-in-class web editorial, sparse, typographic, confident
 
 ---
@@ -102,12 +102,20 @@ Use these brands as calibration references — not to copy, but to sense-check q
 |---|---|---|---|
 | Primary Accent | AMSC Red | `#a60a08` | Accent only — see rules below |
 | Dark Red | Deep Red | `#820b0b` | Hover states, secondary red moments |
-| Base | Black | `#000000` | Full-bleed backgrounds |
-| Surface | Near-Black | `#1a1a1a` | Card surfaces, panel backgrounds |
-| Primary Text | Off-White | `#f5f5f8` | All primary text on dark backgrounds |
-| Secondary Text | Light Grey | `#d3d3d3` | Subtext, labels, secondary info |
-| Muted | Dark Grey | `#555555` | Tertiary labels, disabled states |
-| Divider | Subtle Grey | `#222222` | Borders, separators, grid lines |
+| Base | White | `#ffffff` | **Primary base** — full-bleed backgrounds |
+| Surface | Off-White | `#f5f5f8` | Card surfaces, panel backgrounds |
+| Primary Text | Black | `#000000` | All primary text; inverse (dark) panels |
+| Strong Secondary | Near-Black | `#1a1a1a` | Strong secondary text, inverse panels |
+| Secondary Text | Dark Grey | `#555555` | Subtext, labels, tertiary info |
+| Divider | Light Grey | `#d3d3d3` | Borders, separators, grid lines |
+
+> **v5.0 (Nov 2026) — White is the base.** White is now the primary colour of every
+> AMSC layout. Black plays the role white used to play: all primary text, contrast
+> elements and inverse panels. This supersedes every earlier black-base rule in this
+> file. Wherever an older section below says "dark background", read "white background";
+> where it says white/off-white text, read black. The exceptions are text directly on
+> a darkened photo area and white-on-red, which stay off-white for legibility.
+> Never set `#d3d3d3` as text on white — it fails contrast.
 
 **No other colours are permitted in AMSC content.**
 Do not introduce brand colours from partner organisations into AMSC-primary layouts.
@@ -268,7 +276,7 @@ The AMSC logo must always be:
 **Preferred positions:**
 - Top-left or top-right corner (social, presentations)
 - Bottom-left or bottom-right (documents, reports)
-- Always in its own clean zone — white space, dark panel, or isolated from photo noise
+- Always in its own clean zone — white space, inverse panel, or isolated from photo noise
 
 **Logo sizing:**
 - Social media: logo width ≈ 15–20% of canvas width maximum
@@ -276,8 +284,8 @@ The AMSC logo must always be:
 - Never scale the logo to be the dominant element on any layout
 
 **Logo colour usage:**
-- On dark backgrounds: white or red version
-- On light backgrounds: black or dark version
+- On white / light backgrounds (the default): black+red primary, or all-black mono
+- On inverse black panels and dark photo areas: red or off-white version
 - Never place the logo directly over a mid-tone photo without a backing panel or
   sufficient contrast zone
 
@@ -298,7 +306,7 @@ The AMSC logo must always be:
 
 **When used:**
 Placement: top-right or bottom-right corner — never mid-layout
-Style: Barlow, 400 weight, off-white `#f5f5f8`, uppercase, tracked at 0.12em
+Style: Barlow, 400 weight, black `#000000` (off-white `#f5f5f8` if on a dark photo area), uppercase, tracked at 0.12em
 Size: same as eyebrow caption text — never larger than the logo
 
 ### 3.3 Tagline
@@ -426,7 +434,7 @@ Layout: Hybrid — athlete photo dominant, stat bar anchored at bottom.
 │      [PHOTO DOMINATES]          │
 │                                 │
 │ EYEBROW · SPORT                 │  ← Oswald, red pill, tracked
-│ ATHLETE                         │  ← Oswald 700, massive, white
+│ ATHLETE                         │  ← Oswald 700, massive, white on photo / black on stat bar
 │ NAME                            │
 │ Club · Position                 │  ← Barlow, grey
 │ ─────────────────────────────── │  ← 0.5px rule
@@ -452,7 +460,7 @@ Layout: Split — photo left 55%, data panel right 45%.
 │                  │ AMSC logo        │  ← Oswald, opacity 70%
 │  [DOCUMENTARY    │                  │
 │   PHOTO —        │ EYEBROW          │  ← Oswald, red, tracked
-│   TRAINING       │ [METRIC NAME]    │  ← Oswald, white, H2
+│   TRAINING       │ [METRIC NAME]    │  ← Oswald, black, H2
 │   SESSION]       │ [NUMBER]         │  ← Antonio, 700, dominant
 │                  │                  │
 │                  │ [context line]   │  ← Barlow, grey, 1 sentence
@@ -503,17 +511,17 @@ Caption template: See Section 8.4 — Athlete Speaks caption.
 
 Purpose: Show measurable improvement over time — combine scores, performance deltas.
 Photography mode: None required — data is the visual.
-Layout: Dense — dark background, structured data grid, no photo needed.
+Layout: Dense — white background, structured data grid, no photo needed.
 
 ```
 ┌─────────────────────────────────┐
 │ AMSC logo [top-left]            │
 │ EYEBROW · PERIOD                │  ← Oswald, red, tracked
 │                                 │
-│ ATHLETE NAME                    │  ← Oswald 700, white, dominant
+│ ATHLETE NAME                    │  ← Oswald 700, black, dominant
 │ Sport · Programme               │  ← Barlow, grey
 │ ─────────────────────────────── │
-│ BEFORE          AFTER           │  ← Oswald, muted / Oswald, white
+│ BEFORE          AFTER           │  ← Oswald, muted / Oswald, black
 │ [Number]   →   [Number]         │  ← Antonio large, → in red
 │ [label]        [label]          │  ← Barlow, muted
 │                                 │
@@ -568,7 +576,7 @@ Data without context is a spreadsheet. Data with context is a story.
 **Page hierarchy:**
 1. **Cover** — Brand moment. Sparse. Athlete or campaign photo. Red accent bar permitted.
 2. **Executive Summary** — Dense. Key data front-loaded. One page.
-3. **Section Openers** — Sparse. Large section title. Dark background. Red rule.
+3. **Section Openers** — Sparse. Large section title. White background (or inverse black panel). Red rule.
 4. **Content Pages** — Dense. Data, copy, structured zones. Grid-locked.
 5. **Data Pages** — Dense. Tables, metrics, charts. Clean, no decoration.
 6. **Closing Page** — Sparse. Tagline. Logo. Contact. Clean.
@@ -577,9 +585,9 @@ Data without context is a spreadsheet. Data with context is a story.
 - Page numbers: bottom-right, Barlow, muted grey
 - Header bar: AMSC logo left, document title right, 0.5px bottom rule
 - Section labels: red eyebrow above every major section heading
-- All tables: 0.5px borders, alternating `#1a1a1a` / `#0d0d0d` row fills
-- Charts and data visualisations: dark background, red as primary data colour,
-  grey for secondary series
+- All tables: 0.5px `#d3d3d3` borders, alternating `#ffffff` / `#f5f5f8` row fills
+- Charts and data visualisations: white background, red as primary data colour,
+  black/dark grey for secondary series
 
 ### 6.4 Presentation Slide Structure
 
@@ -636,7 +644,7 @@ For infographics, combine results graphics, report covers, and event materials:
 - Use more than two typefaces in one layout
 - Add decorative elements that carry no information
 - Use gradients, drop shadows, or glows on text
-- Use light or grey backgrounds on athlete photo content — kills the cinematic feel
+- Use a flat black full-bleed layout background (black is for text and inverse panels; white is the base)
 - Crop an athlete's face or key body line without clear artistic intent
 - Use all-caps on body text
 - Introduce colours outside the AMSC palette
@@ -862,10 +870,10 @@ All marks live in the `/logos` folder of the design-system repo as transparent P
 
 | File | Mark | Colourway | Use on |
 |---|---|---|---|
-| `amsc-wordmark-black-red.png` | Wordmark | Black + red accent | **Primary** — light / neutral backgrounds |
-| `amsc-icon-black-red.png` | Icon | Black + red accent | **Primary / favicon** — light / neutral |
-| `amsc-wordmark-red.png` | Wordmark | All red | Dark / black / photo backgrounds |
-| `amsc-icon-red.png` | Icon | All red | Dark / black / photo backgrounds (and faded watermark) |
+| `amsc-wordmark-black-red.png` | Wordmark | Black + red accent | **Primary** — white and light backgrounds (default) |
+| `amsc-icon-black-red.png` | Icon | Black + red accent | **Primary / favicon** — white and light backgrounds |
+| `amsc-wordmark-red.png` | Wordmark | All red | Inverse black panels / dark photo backgrounds |
+| `amsc-icon-red.png` | Icon | All red | Inverse black panels / dark photo backgrounds (and faded watermark) |
 | `amsc-wordmark-white.png` | Wordmark | Off-white knock-out | Red bars & busy photography |
 | `amsc-icon-white.png` | Icon | Off-white knock-out | Red bars & busy photography |
 | `amsc-wordmark-black.png` | Wordmark | All black | Mono — light backgrounds, print |
@@ -873,7 +881,7 @@ All marks live in the `/logos` folder of the design-system repo as transparent P
 | `amsc-wordmark-red-black.png` | Wordmark | Red + black accent | Alternate — light / neutral |
 | `amsc-icon-red-black.png` | Icon | Red + black accent | Alternate — light / neutral |
 
-Both marks are covered across every background: red on dark/photo, off-white on red bars and busy photography, black/black+red on light.
+Both marks are covered across every background: black+red on white (default), red or off-white on inverse panels and dark photo areas, off-white on red bars and busy photography.
 
 ### 10.2 Contact & Handle
 - Email: amscperformance@gmail.com
@@ -1198,12 +1206,13 @@ Do not improvise brand parameters — always assemble from the blocks below.
 Prepend to every AMSC image generation prompt without exception:
 
 ```
-dark background, deep black (#000000) base, AMSC red accent (#a60a08) used once
-as a single dominant colour moment, editorial sports performance aesthetic,
-cinematic lighting with strong directional shadows, Oswald Bold typography where
-text is present, athlete as visual protagonist, Nike/NBA/EXOS visual language,
-no gradients, no light backgrounds, no decorative elements, high contrast,
-photorealistic, professional sports photography quality
+clean white (#ffffff) base with black (#000000) type and contrast elements, AMSC red
+accent (#a60a08) used once as a single dominant colour moment, editorial sports
+performance aesthetic, cinematic lighting with strong directional shadows on the
+photographic subject, Oswald Bold typography where text is present, athlete as visual
+protagonist, Nike/NBA/EXOS visual language, no gradients, no dark flat backgrounds,
+no decorative elements, high contrast, photorealistic, professional sports
+photography quality
 ```
 
 ### 13.2 Sport-Specific Additions
@@ -1261,14 +1270,14 @@ Output as a single copyable block for Arnold to paste into ChatGPT.
 ---
 *Copy everything below this line into ChatGPT:*
 
-dark background, deep black (#000000) base, AMSC red accent (#a60a08) used once as a single dominant colour moment, editorial sports performance aesthetic, cinematic lighting with strong directional shadows, Oswald Bold typography where text is present, athlete as visual protagonist, Nike/NBA/EXOS visual language, no gradients, no light backgrounds, no decorative elements, high contrast, photorealistic, professional sports photography quality, track and field environment, explosive starting position or peak velocity, motion blur on background to emphasise speed, Kenya athletics aesthetic, full bleed athlete portrait, subject sharp and dominant, dark vignette on lower third, competitive environment, athlete facing camera or in peak action, Simani Regau, Kenya sprinter, 100m block start, Nairobi 2026
+clean white (#ffffff) base with black (#000000) type and contrast elements, AMSC red accent (#a60a08) used once as a single dominant colour moment, editorial sports performance aesthetic, cinematic lighting with strong directional shadows on the photographic subject, Oswald Bold typography where text is present, athlete as visual protagonist, Nike/NBA/EXOS visual language, no gradients, no dark flat backgrounds, no decorative elements, high contrast, photorealistic, professional sports photography quality, track and field environment, explosive starting position or peak velocity, motion blur on background to emphasise speed, Kenya athletics aesthetic, full bleed athlete portrait, subject sharp and dominant, dark vignette on lower third, competitive environment, athlete facing camera or in peak action, Simani Regau, Kenya sprinter, 100m block start, Nairobi 2026
 
 ---
 
 ### 13.5 What Not to Add
 
 Never add to an AMSC image generation prompt:
-- White or light backgrounds
+- Flat black or dark full-bleed layout backgrounds (white is the base)
 - Gradient fills or lens flares
 - Multiple red elements ("red shoes and red jersey and red background")
 - Generic fitness/gym stock photo descriptors ("motivational", "inspiring", "powerful")
@@ -1291,3 +1300,7 @@ new content format, or brand evolution decision.*
 *sport-specific additions, photography mode additions, usage pattern, and guard rules.*
 *ChatGPT (GPT-4o) set as primary image generation tool, replacing Nano Banana.*
 *May 2026.*
+*Version 5.0 — White-base update, November 2026: white is now the primary colour;*
+*black takes over text, contrast and inverse panels. Palette, logo colour rules,*
+*table/chart rules, template labels and the image-generation base modifier updated.*
+*Repo palette tokens: see tokens.css v3.1.*
